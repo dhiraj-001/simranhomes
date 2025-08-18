@@ -10,7 +10,7 @@
         <input type="text" name="developer" placeholder="Type Developer name to start search" />
 
         <button class="ar-animated-bg" type="submit">
-            <img src="{{ url('') }}/frontend_assets/icon/search.svg" alt="Search" />
+            <img src="{{ Vite::asset('frontend_assets/icon/search.svg') }}" alt="Search" />
         </button>
     </div>
 </form>

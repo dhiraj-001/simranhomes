@@ -2,14 +2,14 @@
 
 @font-face {
   font-family: 'Context'; /* You can name it anything */
-  src: url('/assets/font/Context.ttf') format('truetype');
+  src: url('../../font/Context.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Champignon'; /* You can name it anything */
-  src: url('/assets/font/Champignon.ttf') format('truetype');
+  src: url('../../font/Champignon.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -220,7 +220,7 @@
   top: -2%;
   width: 100%;
   height: 85%;
-  background: url(/assets/images/home/coutbg1.webp) no-repeat;
+  background: url(../../images/home/coutbg1.webp) no-repeat;
   background-size: 650px;
   opacity: 0.8;
   background-position: center 30%;
@@ -321,7 +321,7 @@
 }
 .promo.banner .bg {
   height: 30vh;
-  background: url(/assets/images/home/fixedbg.webp) no-repeat;
+  background: url(../../images/home/fixedbg.webp) no-repeat;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;

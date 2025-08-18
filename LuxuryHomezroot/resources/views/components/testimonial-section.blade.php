@@ -23,13 +23,13 @@
                     @foreach($testimonials as $testimonial)
                         <div class="swiper-slide">
                             <div class="testimony_col">
-                                <img src="{{ url('frontend_assets/icon/quotes.svg') }}" class="svg" alt="" />
+                                <img src="{{ Vite::asset('frontend_assets/icon/quotes.svg') }}" class="svg" alt="" />
                                 <h5 class="name">{{ $testimonial->name }}</h5>
                                 <p>{{ $testimonial->position }}</p>
                                 <div class="stars">
                                     @for ($i = 1; $i <= 5; $i++)
                                         @if ($i <= $testimonial->star)
-                                            <img src="{{ url('frontend_assets/icon/stars.svg') }}" alt="Star" />
+                                            <img src="{{ Vite::asset('frontend_assets/icon/stars.svg') }}" alt="Star" />
                                         @else
                                             <!--<img src="{{ url('frontend_assets/icon/star-outline.svg') }}" alt="Star" />-->
                                         @endif

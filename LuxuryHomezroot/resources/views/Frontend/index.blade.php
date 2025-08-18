@@ -144,7 +144,7 @@
         <div class="container">
             <div class="upper_sec heading">
                 <div class="icon">
-                    <img src="{{url('')}}/frontend_assets/images/fav_sec.png" alt="" />
+                    <img src="{{ Vite::asset('frontend_assets/images/fav_sec.png') }}" alt="" />
                 </div>
                 <div class="heading_wrapper ar-mt">
                     <div class="line"></div>
@@ -210,15 +210,15 @@
                                     <p class="ar-pt">By {{ optional($item->builder)->name ?? 'N/A' }}</p>
                                     <ul class="details">
                                         <li class="loc">
-                                            <img class="arsvg ar-smooth-blink" src="{{url('')}}/frontend_assets/icon/mappin1.svg" alt="" />
+                                            <img class="arsvg ar-smooth-blink" src="{{ Vite::asset('frontend_assets/icon/mappin1.svg') }}" alt="" />
                                             <p>{{$item->location}}</p>
                                         </li>
                                         <li>
-                                            <img class="svg" src="{{url('')}}/frontend_assets/icon/rupee.svg" alt="" />
+                                            <img class="svg" src="{{ Vite::asset('frontend_assets/icon/rupee.svg') }}" alt="" />
                                             <p>{{$item->price}}</p>
                                         </li>
                                         <li>
-                                            <img class="svg" src="{{url('')}}/frontend_assets/icon/hotel.svg" alt="" />
+                                            <img class="svg" src="{{ Vite::asset('frontend_assets/icon/hotel.svg') }}" alt="" />
                                             <p>{{$item->configuration}}</p>
                                         </li>
                                     </ul>
@@ -283,7 +283,7 @@
                         <div class="prop_col">
                                <a href="{{ url('property/' . $property->slug) }}"> <figure>
                                     <img src="{{ asset('storage/' . $property->main_image) }}" class="prop_img" alt="{{$property->heading}}" />
-                                    <a href="{{ url('property/' . $property->slug) }}" class="exp_pro" target="_blank" rel="noopener noreferrer"> Explore projects <img src="{{url('')}}/frontend_assets/icon/top-right.svg" alt="" /> </a>
+                                    <a href="{{ url('property/' . $property->slug) }}" class="exp_pro" target="_blank" rel="noopener noreferrer"> Explore projects <img src="{{ Vite::asset('frontend_assets/icon/top-right.svg') }}" alt="" /> </a>
                                     @if($item->is_featured)
                                     <span class="stick">featured</span>
                                     @endif
@@ -293,15 +293,15 @@
                                     <p class="ar-pt">By {{ optional($property->builder)->name ?? 'N/A' }}</p>
                                     <ul class="details">
                                         <li class="loc">
-                                            <img class="arsvg ar-smooth-blink" src="{{url('')}}/frontend_assets/icon/mappin1.svg" alt="" />
+                                            <img class="arsvg ar-smooth-blink" src="{{ Vite::asset('frontend_assets/icon/mappin1.svg') }}" alt="" />
                                             <p>{{$property->location}}</p>
                                         </li>
                                         <li>
-                                            <img class="svg" src="{{url('')}}/frontend_assets/icon/rupee.svg" alt="" />
+                                            <img class="svg" src="{{ Vite::asset('frontend_assets/icon/rupee.svg') }}" alt="" />
                                             <p>{{$property->price}}</p>
                                         </li>
                                         <li>
-                                            <img class="svg" src="{{url('')}}/frontend_assets/icon/hotel.svg" alt="" />
+                                            <img class="svg" src="{{ Vite::asset('frontend_assets/icon/hotel.svg') }}" alt="" />
                                             <p>{{$property->configuration}}</p>
                                         </li>
                                     </ul>
@@ -412,33 +412,33 @@
                         <h5>{{ $blog->heading }}</h5>
                         <p>{!! $blog->short_content !!}</p>
                         <div class="btn_wrapper">
-                            <a href="{{ $blogUrl }}" class="readMore" target="_blank" rel="noopener noreferrer">Read More <img src="{{url('')}}/frontend_assets/icon/right-arrow.svg" class="svg" alt="" /></a>
+                            <a href="{{ $blogUrl }}" class="readMore" target="_blank" rel="noopener noreferrer">Read More <img src="{{ Vite::asset('frontend_assets/icon/right-arrow.svg') }}" class="svg" alt="" /></a>
                             <span class="social_toggle">
-                                <a href="javascript:;" class="shareBtn">Share Now <img src="{{url('')}}/frontend_assets/icon/blogshare.svg" class="ar-share-icon" alt="" /></a>
+                                <a href="javascript:;" class="shareBtn">Share Now <img src="{{ Vite::asset('frontend_assets/icon/blogshare.svg') }}" class="ar-share-icon" alt="" /></a>
                                 <ul class="social">
                                     <li>
                                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($blogUrl) }}" target="_blank">
-                                            <img src="{{ asset('frontend_assets/images/home/bfacebook.png') }}" class="ar-social-icon" alt="Facebook" />
+                                            <img src="{{ Vite::asset('frontend_assets/images/home/bfacebook.png') }}" class="ar-social-icon" alt="Facebook" />
                                         </a>
                                     </li>
                                     <li>
                                         <a href="https://twitter.com/intent/tweet?url={{ urlencode($blogUrl) }}" target="_blank">
-                                            <img src="{{ asset('frontend_assets/images/home/btwitter.png') }}" class="ar-social-icon" alt="Twitter" />
+                                            <img src="{{ Vite::asset('frontend_assets/images/home/btwitter.png') }}" class="ar-social-icon" alt="Twitter" />
                                         </a>
                                     </li>
                                     <li>
                                         <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode($blogUrl) }}" target="_blank">
-                                            <img src="{{ asset('frontend_assets/images/home/blinkedin.png') }}" class="ar-social-icon" alt="LinkedIn" />
+                                            <img src="{{ Vite::asset('frontend_assets/images/home/blinkedin.png') }}" class="ar-social-icon" alt="LinkedIn" />
                                         </a>
                                     </li>
                                     <li>
                                         <a href="https://api.whatsapp.com/send?text={{ urlencode($blogUrl) }}" target="_blank">
-                                            <img src="{{ asset('frontend_assets/images/home/bwhatsapp.png') }}" class="ar-social-icon" alt="WhatsApp" />
+                                            <img src="{{ Vite::asset('frontend_assets/images/home/bwhatsapp.png') }}" class="ar-social-icon" alt="WhatsApp" />
                                         </a>
                                     </li>
                                     <li>
                                         <a href="mailto:?subject=Check this out&body={{ urlencode($blogUrl) }}">
-                                            <img src="{{ asset('frontend_assets/images/home/bemail.png') }}" class="ar-social-icon" alt="Email" />
+                                            <img src="{{ Vite::asset('frontend_assets/images/home/bemail.png') }}" class="ar-social-icon" alt="Email" />
                                         </a>
                                     </li>
                                 </ul>
@@ -451,7 +451,7 @@
             </div>
             <div class="btn_wrapper text-center" data-animate="fade-up">
                 <!--<a href="/blogs" target="_blank" rel="noopener noreferrer"><div class="btn btn-btn border-black">Explore All-->
-                <!--    <img src="{{url('')}}/frontend_assets/icon/right-arrow.svg" alt="" class="svg"> -->
+                <!--    <img src="{{ Vite::asset('frontend_assets/icon/right-arrow.svg') }}" alt="" class="svg"> -->
                 <!--</div></a>-->
             </div>
         </div>

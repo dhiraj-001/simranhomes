@@ -259,7 +259,7 @@
 
 /* footer */
 footer {
-    background: url(/assets/images/home/footer_bg.jpg);
+    background: url('../images/home/footer_bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

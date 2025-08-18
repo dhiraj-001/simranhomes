@@ -103,7 +103,7 @@
                         <div class="btn_wrapper">
                             <a href="{{ $blogUrl }}" class="readMore" target="_blank" rel="noopener noreferrer">
                                 Read More
-                                <img src="{{ asset('frontend_assets/icon/right-arrow.svg') }}" class="svg" alt="" />
+                                <img src="{{ Vite::asset('frontend_assets/icon/right-arrow.svg') }}" class="svg" alt="" />
                             </a>
 
                             <span class="social_toggle">

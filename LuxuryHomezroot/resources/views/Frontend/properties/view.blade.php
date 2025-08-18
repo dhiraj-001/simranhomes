@@ -580,7 +580,7 @@
                     <input type="hidden" name="page_url" value="{{ url()->current() }}">
                     
             <div class="ar-autopop-header-from">
-                <img src="{{url('')}}/frontend_assets/images/main_logo.png" alt="Logo" />
+                                    <img src="{{ Vite::asset('frontend_assets/images/main_logo.png') }}" alt="Logo" />
                 <div class="ar-autopop-btn-close" onclick="closeModal()">×</div>
             </div>
 

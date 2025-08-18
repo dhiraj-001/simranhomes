@@ -6,7 +6,7 @@
         <title>@yield('title')</title>
         <meta name="keywords" content="@yield('keywords')" />
         <meta name="description" content="@yield('description')" />
-        <link rel="icon" type="image/png" href="{{url('')}}/frontend_assets/images/fav_Sec.png" sizes="96x96" />
+        <link rel="icon" type="image/png" href="{{ Vite::asset('frontend_assets/images/fav_sec.png') }}" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -45,40 +45,13 @@
             'frontend_assets/js/main.js',
             'frontend_assets/js/whatsapp.js',
             'frontend_assets/sass/header/header.css',
-            'frontend_assets/sass/home/home.css'
+            'frontend_assets/sass/home/home.css',
+            'resources/css/custom.css'
         ])
         <link rel="stylesheet" href="https://fontlibrary.org//face/champignon">
 
         
-        <style>
-            @import url("https://fonts.googleapis.com/css2?family=Allura&display=swap");
-            .promo.banner .bg {
-    background: url(/frontend_assets/images/home/fixedbg.webp) no-repeat;
-}
-
-.promo.banner .bg {
-    background: url(/frontend_assets/images/home/fixedbg.webp) no-repeat !important;
-    
-}
-
-footer {
-    background: url(/frontend_assets/images/home/footer_bg.jpg)!important;
-  
-}
-
-        </style>
         
-        
-        <style>
-        @font-face {
-            font-family: 'Champignon';
-            src: url('/frontend_assets/font/Champignon.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        
-    </style>
         @stack('styles')
     </head>
     <body>
@@ -175,13 +148,13 @@ footer {
                             <h5>Contact Us</h5>
                             <ul class="addr-ul">
                                 <li>
-                                    <a href=""><img class="svg ar-addr-icon" src="{{url('')}}/frontend_assets/icon/adlocation.png" alt="" />{!! $global_settings->address !!}</a>
+                                    <a href=""><img class="svg ar-addr-icon" src="{{ Vite::asset('frontend_assets/icon/adlocation.png') }}" alt="" />{!! $global_settings->address !!}</a>
                                 </li>
                                 <li>
-                                    <a href="mailto:{{ $global_settings->email }}"><img class="svg ar-addr-icon" src="{{url('')}}/frontend_assets/icon/admail.png" alt="" />{{ $global_settings->email }}</a>
+                                    <a href="mailto:{{ $global_settings->email }}"><img class="svg ar-addr-icon" src="{{ Vite::asset('frontend_assets/icon/admail.png') }}" alt="" />{{ $global_settings->email }}</a>
                                 </li>
                                 <li>
-                                    <a href="tel:{{ $global_settings->contact_number }}"><img class="svg ar-addr-icon" src="{{url('')}}/frontend_assets/icon/adphone.png" alt="" />{{ $global_settings->contact_number }}</a>
+                                    <a href="tel:{{ $global_settings->contact_number }}"><img class="svg ar-addr-icon" src="{{ Vite::asset('frontend_assets/icon/adphone.png') }}" alt="" />{{ $global_settings->contact_number }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -279,11 +252,11 @@ $all_states = [
         <div class="footer-links">
             <ul>
                 <li class="" data-model=".enquire-pop">
-                    <a href="javascript:;"> <img src="{{url('')}}/frontend_assets/icon/formicon.svg" width="20px" height="auto" alt="" /></a>
+                    <a href="javascript:;"> <img src="{{ Vite::asset('frontend_assets/icon/formicon.svg') }}" width="20px" height="auto" alt="" /></a>
                 </li>
 
                 <li class="">
-                    <a href="{{ $global_settings->contact_number }}"><img src="{{url('')}}/frontend_assets/icon/icons8-call.gif" width="30px" height="auto" alt="" /></a>
+                    <a href="{{ $global_settings->contact_number }}"><img src="{{ Vite::asset('frontend_assets/icon/icons8-call.gif') }}" width="30px" height="auto" alt="" /></a>
                 </li>
             </ul>
         </div>
@@ -294,7 +267,7 @@ $all_states = [
             </button>
             <div class="model-body">
                 <div class="logo-d">
-                    <img src="{{url('')}}/frontend_assets/images/main_logo.png" alt="" />
+                    <img src="{{ Vite::asset('frontend_assets/images/main_logo.png') }}" alt="" />
                 </div>
                 
                 

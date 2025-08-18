@@ -1,0 +1,18 @@
+.promo.banner .bg {
+    background: url(../../frontend_assets/images/home/fixedbg.webp) no-repeat;
+}
+
+.promo.banner .bg {
+    background: url(../../frontend_assets/images/home/fixedbg.webp) no-repeat !important;
+}
+
+footer {
+    background: url(../../frontend_assets/images/home/footer_bg.jpg)!important;
+}
+
+@font-face {
+    font-family: 'Champignon';
+    src: url('../../frontend_assets/font/Champignon.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

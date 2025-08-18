@@ -35,7 +35,7 @@
                             <div class="d-flex flex-column h-100">
                                 <div class="mb-4 mb-md-5 text-center">
                                     <a href="{{url('')}}/" class="d-block auth-logo">
-                                        <img src="{{url('')}}/admin_assets/images/main_logo.png" alt="" height="40"> 
+                                        <img src="{{ Vite::asset('admin_assets/images/main_logo.png') }}" alt="" height="40"> 
                                         <span class="logo-txt"></span>
                                     </a>
                                 </div>

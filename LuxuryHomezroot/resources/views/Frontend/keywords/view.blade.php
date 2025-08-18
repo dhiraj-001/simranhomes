@@ -199,15 +199,15 @@
                     @foreach($testimonials as $testimonial)
                     <div class="swiper-slide">
                         <div class="testimony_col">
-                            <img src="{{url('')}}/frontend_assets/icon/quotes.svg" class="svg" alt="" />
+                            <img src="{{ Vite::asset('frontend_assets/icon/quotes.svg') }}" class="svg" alt="" />
                             <h5 class="name">{{ $testimonial->name }}</h5>
                             <p>{{ $testimonial->position }}</p>
                             <div class="stars">
-                                <img src="{{url('')}}/frontend_assets/icon/stars.svg" alt="" />
-                                <img src="{{url('')}}/frontend_assets/icon/stars.svg" alt="" />
-                                <img src="{{url('')}}/frontend_assets/icon/stars.svg" alt="" />
-                                <img src="{{url('')}}/frontend_assets/icon/stars.svg" alt="" />
-                                <img src="{{url('')}}/frontend_assets/icon/stars.svg" alt="" />
+                                <img src="{{ Vite::asset('frontend_assets/icon/stars.svg') }}" alt="" />
+                                <img src="{{ Vite::asset('frontend_assets/icon/stars.svg') }}" alt="" />
+                                <img src="{{ Vite::asset('frontend_assets/icon/stars.svg') }}" alt="" />
+                                <img src="{{ Vite::asset('frontend_assets/icon/stars.svg') }}" alt="" />
+                                <img src="{{ Vite::asset('frontend_assets/icon/stars.svg') }}" alt="" />
                             </div>
                             <div class="desc">
                                 <p>{!! $testimonial->message !!}</p>
