@@ -1,0 +1,468 @@
+@import ../_common
+
+header
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    z-index: 5
+    transition: .5s ease
+    height: var(--headerheight)
+    background-color: #0000001f
+    @include after(rgb(0 0 0 / 60%))
+    &::after
+        bottom: auto
+        height: 0
+        z-index: -1
+        transition: .5s ease
+    .header-wrapper
+        position: relative
+        height: 100%
+        display: flex
+        justify-content: center
+        align-items: center
+        padding: 0 var(--containerfluid)
+        transition: .5s ease
+        gap: 6rem
+        &::before
+            content: ""
+            position: absolute
+            bottom: 10px
+            left: 50%
+            transform: translateX(-50%)
+            width: 50%
+            height: 2px
+            background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.8) 30%, rgba(255, 255, 255, 0.8) 70%, rgba(0, 0, 0, 0) 100%)
+        .colA,.colB, .colC
+            display: flex
+            align-items: center
+            height: 100%
+            flex: 0 1 auto
+            ul
+                display: flex
+                align-items: center
+                gap: 35px
+                li
+                    a
+                        transition: .5s ease
+                        text-transform: uppercase
+                        &:hover
+                            color: $primary
+        .colB
+            img
+                height: 40%
+        
+header
+    &.header-fixed
+        @include media(991)
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px
+    &.header-fixed,&.header-fit
+        transition: .5s ease
+        --headerpadding: 14px
+        height: var(--headerfixed)
+        &::after
+            height: 100%
+    &.header-fit
+        transition: 0s
+        &::after
+            transition: none
+        .header-wrapper
+            .colA
+                .logo
+                    transition: none !important
+    &.header-shadow
+        box-shadow: 0px 2px 8px 0px #63636333
+
+footer
+    background: #000
+    .footer-wrapper
+        padding: 50px 0 100px
+        position: relative
+        z-index: 1
+        .flex
+            h6
+                color: $white
+                font-size: 18px
+            .col-md
+                ul
+                    li
+                        &:not(:last-child)
+                            margin-bottom: 3px
+                        a
+                            display: block
+                            color: $white
+                            padding: 3px 0
+                            &:hover
+                                color: $primary
+            .colA
+                flex: 0 1 350px
+                .logo
+                    margin-bottom: 35px
+                    width: 274px
+                    img
+                        width: 100%
+                p
+                    color: $white
+                .social-icons
+                    padding: 15px 0
+                    display: flex
+                    gap: 10px
+                    a
+                        display: inline-block
+                        width: 40px
+                        height: 40px
+                        background-color: var(--primary)
+                        display: flex
+                        align-items: center
+                        justify-content: center
+                        border-radius: 5px
+                        svg
+                            vertical-align: middle
+                ul
+                    li
+                        &:not(:last-child)
+                            margin-bottom: 1rem
+                        a
+                            display: inline-flex
+                            align-items: center
+                            color: $white
+                            gap: 18px
+                            &:hover
+                                color: $primary
+            .colB
+                flex: 1
+                display: flex
+                gap: 6rem
+                padding-left: 8rem
+                padding-right: 2rem
+                .col-md
+                    h5
+                        display: inline
+                        font-size: 24px
+                        font-weight: 500
+                        padding-bottom: 10px
+                        position: relative
+                        color: $white
+                        &::before
+                            content: ""
+                            position: absolute
+                            width: 30% 
+                            left: 0
+                            bottom: 0
+                            height: 2px
+                            background: var(--primary)
+                    ul
+                        padding: 30px 0 0 15px
+                        li
+                            position: relative
+                            &::before
+                                content: ""
+                                position: absolute
+                                left: -19px
+                                top: 10px
+                                width: 5px
+                                height: 5px
+                                background-color: var(--text)
+                                border-radius: 50%
+            .colC
+                flex: 1
+                h5
+                    display: inline
+                    font-size: 24px
+                    font-weight: 500
+                    padding-bottom: 10px
+                    position: relative
+                    color: $white
+                    &::before
+                        content: ""
+                        position: absolute
+                        width: 30% 
+                        left: 0
+                        bottom: 0
+                        height: 2px
+                        background: var(--primary)
+                .addr-ul
+                    padding-top: 30px
+                    li
+                        padding-bottom: 15px
+                        a
+                            display: flex
+                            gap: 10px
+        .bottom-footer
+            padding-top: 10px
+            h5
+                color: $white
+                font-size: 20px
+                font-weight: 500
+                padding-left: 10px
+                border-left: 5px solid var(--primary)
+            .top_search
+                padding: 20px 0 40px
+                display: flex
+                flex-wrap: wrap
+                max-height: 90px
+                overflow-x: auto
+                &::-webkit-scrollbar
+                    width: 4px
+                    height: 4px
+                    background: #000
+                &::-webkit-scrollbar-thumb
+                    background-color: #fff
+                li
+                    padding: 0 40px 9px 0
+                    color: $white
+                    list-style: disc
+                    flex: 0 1 auto
+        .copy
+            padding-top: 50px
+            color: $white
+            font-size: 18px
+    
+.ham-pop
+    right: 0
+    max-width: 480px
+    background: $gradient-e
+    transform: translateX(100%)
+    transition: .5s ease
+    &.is-open
+        transform: translateX(0%)
+    .close
+        path
+            stroke: $text !important
+            stroke-width: 2 !important
+    .model-body
+        padding: 75px 40px 30px
+        height: 100%
+        overflow-y: auto
+        display: flex
+        flex-direction: column
+        @include scrollbar(6px,$white,#5e5e5e,8px)
+        @include media(520)
+            padding: 40px 20px
+        .ico
+            max-width: 70px
+            margin-bottom: 55px
+            line-height: 0
+            img,svg
+                width: 100%
+                height: auto
+        .nav-list
+            flex: 1
+            >li
+                &:not(:last-child)
+                    margin-bottom: 22px
+                    @include media(1366)
+                        margin-bottom: 20px
+                >a
+                    font-size: 28px
+                    line-height: 1.06
+                    color: $black
+                    display: inline-block
+                    @include font(500)
+                    @include media(1366)
+                        font-size: 28px
+                    @include media(675)
+                        font-size: 24px
+                    &:hover
+                        color: $primary
+        .bottom-list
+            border-top: 1px solid #ccc
+            margin-top: 2rem
+            padding-top: 1rem
+            display: flex
+            align-items: center
+            gap: 1rem
+            .social-icons
+                a
+                    display: inline-flex
+                    vertical-align: middle
+                    align-items: center
+                    justify-content: center
+                    height: 40px
+                    width: 40px
+                    border-radius: 50%
+                    line-height: 0
+                    overflow: hidden
+                    @include before($gradient-a)
+                    color: $text
+                    &::before
+                        border-radius: 50%
+                        transform: scale(1.5)
+                        z-index: -1
+                        opacity: 0
+                        transition: .2s ease
+                    &:not(:last-child)
+                        margin-right: 4px
+                    svg
+                        width: 24px
+                        height: 24px
+                        path
+                            transition: none
+                            &[stroke],&[fill="none"]
+                                stroke: currentColor
+                            &[fill]
+                                fill: currentColor
+                    &:hover
+                        color: $white
+                        &::before
+                            transition: .5s ease
+                            opacity: 1
+                            transform: scale(1)
+
+.enquire-pop
+    right: 0
+    transform: translateX(100%)
+    transition: .5s ease
+    background: $gradient-e
+    &.is-open
+        transform: translateX(0%)
+    .model-body
+        padding: 60px 35px 30px
+        height: 100%
+        overflow-y: auto
+        @include scrollbar(3px,$white,#5e5e5e,8px)
+        @include media(675)
+            padding: 70px 20px 30px
+        .title
+            text-align: center
+            margin-bottom: 2rem
+            h4
+                font-size: 32px
+                color: $black
+                @include font(500)
+            p
+                color: $text
+                margin-top: 10px
+                font-size: 14px
+                line-height: 20px
+                max-width: 317px
+                margin-left: auto
+                margin-right: auto
+                @include media(675)
+                    font-size: 14px
+                    max-width: 300px
+        .form
+            --gaptb: 15px
+            .btn
+                &::before, &::after
+                    display: none
+                background-color: var(--primary)
+.video-pop
+    left: 0
+    right: 0
+    background: #0000007a
+    z-index: 9
+    max-width: 100%
+    transform: translateY(100%)
+    transition: .5s ease
+    &.is-open
+        transform: translateY(0%)
+    .close-video
+        position: absolute
+        bottom: calc(100% + 20px)
+        top: auto
+        right: -40px
+        height: 50px
+        width: 50px
+        border-radius: 50%
+        background: $secondary
+        display: flex
+        align-items: center
+        justify-content: center
+        transition: .5s ease
+        @include media(675)
+            right: 0
+        &:hover
+            background: $primary
+        svg
+            height: 35%
+            width: 35%
+        path
+            stroke-width: 2
+            stroke: $white
+    .model-body
+        position: absolute
+        top: 50%
+        left: 50%
+        translate: -50% -50%
+        width: 100%
+        max-width: 50%
+        @include media(675)
+            max-width: 95%
+        iframe
+            width: 100%
+            aspect-ratio: 1.9
+            border: 2px solid $white
+            background: $white
+.footer-strip
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+    z-index: 4
+    background: $black
+    display: none
+    @include media(675)
+        display: block
+    ul
+        @include flex
+        li
+            flex: 1
+            &:not(:last-child)
+                border-right: 1px solid rgb(256 256 256 / 10%)
+            a
+                display: flex
+                flex-direction: column
+                align-items: center
+                padding: 10px
+                gap: 5px
+                color: $white
+                font-size: 14px
+                height: var(--footerstrip)
+                svg
+                    width: 20px
+                    height: 20px
+                    &[stroke]
+                        stroke: $white
+                    &[fill]
+                        fill: $white
+                    path
+                        &[stroke]
+                            stroke: $white
+                        &[fill]
+                            fill: $white
+
+.footer-links
+    position: fixed
+    right: 3%
+    bottom: 5%
+    z-index: 10
+    ul
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        gap: 7px
+        li
+            cursor: pointer
+            &.whts_icon
+                a
+                    background-color: #1cc61c
+            a
+                width: 40px
+                height: 40px
+                border-radius: 50%
+                background: #dcdcdcc2
+                display: flex
+                align-items: center
+                justify-content: center
+                svg
+                    vertical-align: middle
+                    
+.bottombar
+    position: fixed
+    width: 100%
+    height: 60px
+    background: rgba(0, 0, 0, 0.5)
+    bottom: 0
+    left: 0

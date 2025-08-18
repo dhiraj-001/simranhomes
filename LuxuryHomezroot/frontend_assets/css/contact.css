@@ -1,0 +1,272 @@
+@keyframes shine {
+  from {
+    opacity: 0;
+    left: 0%;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    left: 100%;
+  }
+}
+.contact-secA {
+  padding: 120px 0 135px;
+}
+@media only screen and (max-width: 991px) {
+  .contact-secA {
+    padding: 6rem 0;
+  }
+}
+@media only screen and (max-width: 675px) {
+  .contact-secA {
+    padding: 65px 0;
+  }
+}
+.contact-secA .flex {
+  gap: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  /* align-items: center; */
+  justify-content: center;
+}
+@media only screen and (max-width: 767px) {
+  .contact-secA .flex {
+    gap: 3rem;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 520px) {
+  .contact-secA .flex {
+    gap: 1rem;
+  }
+}
+.contact-secA .flex figure {
+  flex: 0 1 43%;
+    line-height: 0; 
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    margin: 0;
+}
+.contact-secA .flex figure img { 
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.contact-secA .flex figcaption {
+  flex: 1;
+}
+@media only screen and (max-width: 767px) {
+  .contact-secA .flex figcaption {
+    flex: 0 1 100%;
+  }
+}
+@media only screen and (max-width: 520px) {
+  .contact-secA .flex figcaption .heading {
+    display: none;
+  }
+}
+.contact-secA .flex figcaption .contact-info {
+  /* margin: 25px 0 50px; */
+}
+@media only screen and (max-width: 1007px) {
+  .contact-secA .flex figcaption .contact-info {
+    margin: 25px 0 50px;
+  }
+}
+@media only screen and (max-width: 675px) {
+  .contact-secA .flex figcaption .contact-info {
+    margin: 25px 0 50px;
+  }
+}
+.contact-secA .flex figcaption .contact-info li {
+ --icon: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 40px; 
+    padding-top: 15px; 
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+@media only screen and (max-width: 520px) {
+  .contact-secA .flex figcaption .contact-info li {
+    --icon: 45px;
+  }
+}
+.contact-secA .flex figcaption .contact-info li:not(:last-child) {
+  margin-bottom: 19px;
+}
+.contact-secA .flex figcaption .contact-info li:first-child {
+  align-items: flex-start;
+}
+.contact-secA .flex figcaption .contact-info li .ico {
+  flex: 0 1 auto;
+  height: var(--icon);
+  width: var(--icon);
+  border: 2px solid #eb9020;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media only screen and (max-width: 520px) {
+  .contact-secA .flex figcaption .contact-info li .ico {
+    border-width: 1px;
+  }
+}
+.contact-secA .flex figcaption .contact-info li .ico img, .contact-secA .flex figcaption .contact-info li .ico svg {
+  width: 50%;
+  height: 50%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.contact-secA .flex figcaption .contact-info li p > a {
+  padding-left: 0;
+  display: block;
+}
+.contact-secA .flex figcaption .contact-info li a, .contact-secA .flex figcaption .contact-info li p {
+  flex: 1;
+  padding-left: 22px;
+  color: var(--black);
+}
+@media only screen and (max-width: 520px) {
+  .contact-secA .flex figcaption .contact-info li a, .contact-secA .flex figcaption .contact-info li p {
+    padding-left: 12px;
+  }
+}
+.contact-secA .flex figcaption .contact-info li a:hover, .contact-secA .flex figcaption .contact-info li p:hover {
+  color: var(--primary);
+}
+@media only screen and (max-width: 520px) {
+  .contact-secA .flex figcaption .contact-info li a br, .contact-secA .flex figcaption .contact-info li p br {
+    display: none;
+  }
+}
+.contact-secA .flex figcaption .contact-info h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+@media only screen and (max-width: 520px) {
+  .contact-secA .flex figcaption .btn-div-wrap {
+    text-align: center; 
+  }
+}
+.contact-secA .flex figcaption .btn-div-wrap > *:not(:last-child) {
+  margin-right: 12px;
+}
+@media only screen and (max-width: 675px) {
+  .contact-secA .flex figcaption .btn-div-wrap > *:not(:last-child) {
+    margin-right: 8px;
+  }
+}
+.contact-secA .flex figcaption .btn-div-wrap .btn {
+  --padding: 28px;
+}
+@media only screen and (max-width: 675px) {
+  .contact-secA .flex figcaption .btn-div-wrap .btn {
+    --padding: 16px;
+    font-size: 14px;
+  }
+}
+
+.contact-secC {
+  height: calc(100vh - var(--headerfixed));
+  line-height: 0;
+}
+.contact-secC iframe {
+  height: 100%;
+  width: 100%;
+  filter: grayscale(1);
+}
+
+.contact-secB {
+  padding: 100px 0 105px;
+  background: var(--pink-light);
+}
+@media only screen and (max-width: 675px) {
+  .contact-secB {
+    padding: 5rem 0 4rem;
+  }
+}
+.contact-secB .heading {
+  margin-bottom: 62px;
+}
+@media only screen and (max-width: 675px) {
+  .contact-secB .heading {
+    margin-bottom: 2.5rem;
+  }
+}
+.contact-secB .form-wrap {
+  max-width: 813px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contact-secB .form-wrap .form {
+  --item: 2;
+  --gaplr: 57px;
+  --gaptb: 30px;
+  --borderbefore: var(--black);
+  --borderafter: var(--black);
+  --color: var(--black);
+  --labelbefore: rgb(0 0 0);
+  --labelafter: rgb(0 0 0 / .5 );
+}
+@media only screen and (max-width: 675px) {
+  .contact-secB .form-wrap .form {
+    --gaptb: 20px;
+  }
+}
+@media only screen and (max-width: 520px) {
+  .contact-secB .form-wrap .form {
+    --item: 1;
+  }
+}
+.contact-secB .form-wrap .form .submit-grp .btn {
+  --padding: 54px;
+}
+
+.place-card .place-card-large {
+  display: none;
+}
+
+.gm-style .place-card-large {
+  display: none !important;
+  padding: 0;
+}/*# sourceMappingURL=contact.css.map */
+
+/* ARYA */
+.contact-secA .h-medium h2 {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 36px;
+    /* white-space: nowrap; */
+    margin-bottom: 12px;
+}
+
+.contact-secB .heading h3 {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 36px;
+    /* white-space: nowrap; */
+    margin-bottom: 12px;
+}
+
+.ar-cont-info {
+    margin-top: 40px;
+    padding: 40px;
+    background: rgb(255, 255, 255);
+    border-radius: 30px;
+    border: 1px solid gainsboro;
+    /* box-shadow: 0px 0px 60px -20px #7d797947; */
+}
+
+.ar-cont-info .btn-div-wrap {
+    margin-top: 40px; 
+}
+/* ARYA */

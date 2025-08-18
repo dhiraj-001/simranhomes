@@ -1,0 +1,174 @@
+    
+    /* banner */
+    .ar-bg {
+        line-height: 0;
+        height: 70vh;
+    }  
+
+ 
+  
+  .ar-hero-section {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      overflow: hidden;
+    }
+
+    .ar-hero-slider {
+      display: flex;
+      /* width: 400%; 4 slides  */
+      height: 100%;
+      animation: ar-slide-animation 20s infinite;
+    }
+
+    .ar-hero-slide {
+      flex: 0 0 100%;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      height: 100%;
+    }
+
+    .ar-hero-slide::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      /* background: rgba(0, 0, 0, 0.5); dark overlay */
+      background:linear-gradient(360deg, rgba(0, 0, 0, 0.2) 29%, rgba(0, 0, 0, 0.95) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+      z-index: 1;
+    }
+
+    .ar-hero-text {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        /* font-size: 3rem; */
+        /* font-weight: bold; */
+        z-index: 2;
+        text-align: center;
+        /* text-shadow: 2px 2px 28px rgba(0,0,0,0.6); */
+        font-size: 48px !important;
+        font-family: 'Context' !important;
+        line-height: 85px !important;
+        letter-spacing: 1.2px !important;
+        /* margin-bottom: 0 !important; */
+        font-weight: 600 !important;
+        /* margin-top: -16px; */
+    }
+
+    @keyframes ar-slide-animation {
+      0% { transform: translateX(0%); }
+      20% { transform: translateX(0%); }
+      25% { transform: translateX(-100%); }
+      45% { transform: translateX(-100%); }
+      50% { transform: translateX(-200%); }
+      70% { transform: translateX(-200%); }
+      75% { transform: translateX(-300%); }
+      95% { transform: translateX(-300%); }
+      100% { transform: translateX(0%); }
+    }
+
+    .ar-sec-pad {
+      padding: 30px 0px 0px 0px;
+    }
+
+     /* banner */
+
+/* filteration search bar */
+.ar-filterbox {
+  background: #c9a43d;
+  padding: 25px 10px;
+  z-index: 0;
+}
+
+.ar-filterbox3 {
+  background-color: transparent;
+}
+
+.ar-filterbox form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+
+.ar-form-select {
+  flex: 1 1 180px; /* Flexible inline layout */
+  font-size: 14px;
+  padding: 11px 15px;
+  border: 0;
+  border-bottom: 1px solid #a2a2a2 !important;
+  border-radius: 5px;
+  min-height: 45px;
+  background-color: var(--bs-body-bg);
+  color: var(--text);
+  /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); */
+  background-repeat: no-repeat;
+  background-position: right .75rem center;
+  background-size: 16px 12px;
+  appearance: none;
+   
+} 
+
+.ar-filterbox .ar-form-select ul { 
+  z-index: 1!important;
+}
+
+
+.ar-filterbox .ar-form-select ul li    { 
+  font-size: 14px;
+}
+
+
+.ar-form-control {
+   flex: 1 1 180px; /* Flexible inline layout */
+    padding: 11px 15px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        border: 0;
+    border-bottom: 1px solid #a2a2a2 !important;
+    border-radius: 5px !important;
+}
+
+select.ar-form-select option {
+  color: #000!important;
+}
+
+.ar-btn-style-1 {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 7px;
+  background-color: #cb8925;
+  color: #fff;
+  text-transform: uppercase;
+  /* font-family: "Besley", serif; */
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+ 
+
+@media (max-width: 768px) {
+  .ar-form-select,
+  .ar-form-control,
+  .ar-btn-style-1 {
+    flex: 1 1 100%;
+  }
+}
+
+/* filteration search bar */
