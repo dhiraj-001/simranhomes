@@ -128,34 +128,23 @@ class builderController extends Controller
     }
     
     
-    public function showBuildersTab()
-    {
+   public function showBuildersTab()
+{
     $banner = Banner::with('images')->where('page', 'developers')->where('status', 1)->latest()->first();   
     $testimonials = Testimonial::paginate(15);
-    $cities = DB::table('cities')
-    ->whereExists(function ($query) {
-        $query->select(DB::raw(1))
-              ->from('builder_city')
-              ->whereRaw('builder_city.city_id = cities.id');
-    })
-    ->orderByRaw('CASE WHEN order_number = 0 THEN 1 ELSE 0 END')
-    ->orderBy('order_number')
-    ->orderBy('city_name')
-    ->get();
-
-
     
-        $builders = DB::table('builders')
-            ->join('builder_city', 'builders.id', '=', 'builder_city.builder_id')
-            ->join('cities', 'cities.id', '=', 'builder_city.city_id')
-            ->select('builders.*', 'cities.city_name')
-            ->get()
-            ->groupBy('city_name');
-            
+    // This query for cities is correct, no changes needed here.
+    $cities = City::whereHas('builders')->orderByRaw('CASE WHEN order_number = 0 THEN 1 ELSE 0 END')->orderBy('order_number')->orderBy('city_name')->get();
+
+    // --- THIS IS THE CORRECTED QUERY ---
+    // Use the Builder model and eager-load the 'cities' relationship
+    $builders = Builder::with('cities')->get()->groupBy(function($builder) {
+        // Group builders by the name of their first associated city
+        return optional($builder->cities->first())->city_name;
+    });
         
-    
-        return view('Frontend.developers', compact('cities', 'builders', 'testimonials', 'banner'));
-    }
+    return view('Frontend.developers', compact('cities', 'builders', 'testimonials', 'banner'));
+}
 
 
     public function developer($slug)

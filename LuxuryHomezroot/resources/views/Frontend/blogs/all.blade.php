@@ -1,162 +1,146 @@
-@extends('layouts.master') @section('title','Blogs : Luxury Homez') @section('description','Luxury Homez') @section('content') @push('styles')
-<link rel="stylesheet" href="{{url('')}}/frontend_assets/css/developers.css" />
-<link rel="stylesheet" href="{{url('')}}/frontend_assets/css/hoztab.css" />
-<link rel="stylesheet" href="{{url('')}}/frontend_assets/css/allprojects.css" />
-<link rel="stylesheet" href="{{url('')}}/frontend_assets/css/aresponsive.css" />
-<style>
-    .banner.home-banner .banner-wrapper {
-        bottom: 10%;
-    }
+@extends('layouts.master') 
+@section('title','Blogs | Luxury Homez') 
+@section('description','A refined collection of articles and insights crafted to empower luxury home buyers, sellers, and investors.') 
 
-.banner.home-banner .content .search-div {
-    bottom: 5px;
-}
+@section('content')
+
+@push('styles')
+@vite([
+    'frontend_assets/sass/home/home.css',
+    'frontend_assets/css/developers.css',
+    'frontend_assets/css/hoztab.css',
+    'frontend_assets/css/allprojects.css',
+    'frontend_assets/css/aresponsive.css'
+])
+<style>
+    /* Custom styles for Laravel's default pagination */
+    .pagination nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .pagination .page-item .page-link {
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+        color: #0A2342; /* navy-dark */
+    }
+    .pagination .page-item.active .page-link {
+        background-color: #0A2342; /* navy-dark */
+        color: white;
+        border-color: #0A2342;
+    }
+    .pagination .page-item:not(.disabled) .page-link:hover {
+        background-color: #f0f0f0;
+    }
+    .pagination .page-item.disabled .page-link {
+        color: #9ca3af;
+    }
 </style>
 @endpush
 
-<div class="banner home-banner">
-    {{-- If video --}}
-    @if($banner && $banner->type === 'video' && $banner->video)
-        <div class="bg">
-            <video playsinline autoplay muted loop width="100%" height="600">
-                <source src="{{ asset('storage/app/public/' . $banner->video) }}" type="video/mp4" />
-            </video>
+<!-- =================================================================================== -->
+<!-- START: HERO BANNER SECTION (REDESIGNED)                                           -->
+<!-- =================================================================================== -->
+<div class="relative h-[60vh] min-h-[500px] flex items-center justify-center text-center text-white overflow-hidden">
+    <!-- Background Media -->
+    <div class="absolute inset-0 z-0 bg-navy-dark">
+        @if($banner && $banner->type === 'image' && $banner->images->count())
+            <div class="w-full h-full bg-cover bg-center" style="background-image: url('{{ asset('storage/' . $banner->images->first()->image) }}');"></div>
+        @else
+            {{-- Fallback background --}}
+            <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=2070');"></div>
+        @endif
+        <!-- Darkening overlay -->
+        <div class="absolute inset-0 bg-black/60"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 container mx-auto px-6" data-animate="fade-up">
+        @php $headingParts = explode('||', $global_settings->home_sec9_heading); @endphp
+        <p class="font-display text-gold-accent font-semibold tracking-widest uppercase mb-4">{{ $headingParts[0] ?? 'Insights' }}</p>
+        <h1 class="font-display text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            {{ $headingParts[1] ?? 'From The Journal' }}
+        </h1>
+        <div class="max-w-3xl mx-auto text-base text-gray-300 font-elegant">
+            <p>A refined collection of articles and insights crafted to empower luxury home buyers, sellers, and investors.</p>
         </div>
-        <div class="banner-wrapper">
-            <div class="container">
-                <div class="content content-white text-center ar-resp-flx">
-                    <span class="span-a">{{ $banner->sub_heading }} </span>
-                    @php
-                    $words = explode(' ', $banner->heading); // ['Prestigious', 'Address']
-                    @endphp
-                    <h1>
-                        @foreach($words as $word)
-                            <span>{{ substr($word, 0, 1) }}</span>{{ substr($word, 1) }}
-                        @endforeach
-                    </h1>
-                    <p data-animate="fade-up" data-animate-delay="300" class="kmr-animate">{!! $banner->description !!}</p>
-                    <x-search-bar />
-                </div>
-            </div>
-        </div>
-    
-    {{-- If image slider --}}
-    @elseif($banner && $banner->type === 'image' && $banner->images->count())
-        <div class="ar-bg">
-            <div class="ar-hero-section">
-                <div class="ar-hero-slider" id="ar-hero-slider">
-                    @foreach($banner->images as $image)
-                        <div class="ar-hero-slide" style="background-image: url('{{ asset('storage/app/public/' . $image->image) }}');"></div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-        <div class="banner-wrapper">
-            <div class="container">
-                <div class="content content-white text-center ar-resp-flx">
-                    <span class="span-a">{{ $banner->sub_heading }} </span>
-                    @php
-                    $words = explode(' ', $banner->heading); // ['Prestigious', 'Address']
-                    @endphp
-                    <h1>
-                        @foreach($words as $word)
-                            <span>{{ substr($word, 0, 1) }}</span>{{ substr($word, 1) }}
-                        @endforeach
-                    </h1>
-                    <p data-animate="fade-up" data-animate-delay="300" class="kmr-animate">{!! $banner->description !!}</p>
-                    <x-search-bar />
-                </div>
-            </div>
-        </div>
-    @endif
+    </div>
 </div>
+<!-- =================================================================================== -->
+<!-- END: HERO BANNER SECTION                                                          -->
+<!-- =================================================================================== -->
 
-<section>
-    <div class="home-secH sec-pad gray-bg">
-        <div class="container over_hidden">
-            <div class="heading">
-                <div class="heading_wrapper">
-                    <div class="line"></div>
-                    @php $headingParts = explode('||', $global_settings->home_sec9_heading); @endphp
-                    <h2>
-                        {{ $headingParts[0] ?? '' }} @if(isset($headingParts[1]))
-                        <span>{{ $headingParts[1] }}</span>
-                        @endif
-                    </h2>
-                    <div class="line"></div>
-                </div>
-                <p>A refined collection of articles and insights crafted to empower luxury home buyers, sellers, and investors.</p>
-            </div>
-            <div class="blogs_wrapper">
-                @foreach($blogs as $blog) @if($blog->status == 1)
-                <div class="blogs_col ar-blogsc_col">
-                    @php $blogUrl = url('blog/' . $blog->slug); @endphp
 
-                    <a href="{{ $blogUrl }}" class="figure" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('storage/app/public/' . $blog->main_image) }}" alt="{{ $blog->heading }}" />
-                    </a>
-
-                    <figcaption>
-                        <h5>{{ $blog->heading }}</h5>
-                        <p>{!! $blog->short_content !!}</p>
-
-                        <div class="btn_wrapper">
-                            <a href="{{ $blogUrl }}" class="readMore" target="_blank" rel="noopener noreferrer">
-                                Read More
-                                <img src="{{ Vite::asset('frontend_assets/icon/right-arrow.svg') }}" class="svg" alt="" />
+<!-- =================================================================================== -->
+<!-- START: BLOGS SECTION (REDESIGNED)                                                 -->
+<!-- =================================================================================== -->
+<section class="bg-gray-50 py-20 sm:py-28">
+    <div class="container mx-auto px-6">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Blog Posts Grid -->
+            <div class="grid grid-cols-1 gap-12">
+                @foreach($blogs as $blog)
+                    @if($blog->status == 1)
+                        {{-- FEATURED POST (The first one in the collection) --}}
+                        @if($loop->first)
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12" data-animate="fade-up">
+                            <a href="{{ url('blog/' . $blog->slug) }}" class="group block relative rounded-2xl shadow-xl hover:shadow-2xl overflow-hidden transition-all duration-300">
+                                <img src="{{ asset('storage/' . $blog->main_image) }}" alt="{{ $blog->heading }}" class="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-300" />
                             </a>
-
-                            <span class="social_toggle">
-                                <a href="javascript:;" class="shareBtn">
-                                    Share Now
-                                    <img src="{{ asset('frontend_assets/icon/blogshare.svg') }}" class="ar-share-icon" alt="" />
+                            <div class="flex flex-col justify-center">
+                                <p class="font-elegant text-sm text-gray-500 mb-2">{{ $blog->created_at->format('d M, Y') }}</p>
+                                <h3 class="font-display text-3xl md:text-4xl text-navy-dark font-bold mb-4">
+                                    <a href="{{ url('blog/' . $blog->slug) }}" class="hover:text-gold-accent transition-colors">{{ $blog->heading }}</a>
+                                </h3>
+                                <div class="prose max-w-none text-gray-600 font-elegant text-sm line-clamp-3 mb-6">
+                                    {!! $blog->short_content !!}
+                                </div>
+                                <a href="{{ url('blog/' . $blog->slug) }}" class="inline-block font-display text-navy-dark font-bold group/link">
+                                    Read More <span class="inline-block transition-transform duration-300 group-hover/link:translate-x-1">&rarr;</span>
                                 </a>
-
-                                <ul class="social">
-                                    <li>
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($blogUrl) }}" target="_blank">
-                                            <img src="{{ asset('frontend_assets/images/home/bfacebook.png') }}" class="ar-social-icon" alt="Facebook" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://twitter.com/intent/tweet?url={{ urlencode($blogUrl) }}" target="_blank">
-                                            <img src="{{ asset('frontend_assets/images/home/btwitter.png') }}" class="ar-social-icon" alt="Twitter" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode($blogUrl) }}" target="_blank">
-                                            <img src="{{ asset('frontend_assets/images/home/blinkedin.png') }}" class="ar-social-icon" alt="LinkedIn" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://api.whatsapp.com/send?text={{ urlencode($blogUrl) }}" target="_blank">
-                                            <img src="{{ asset('frontend_assets/images/home/bwhatsapp.png') }}" class="ar-social-icon" alt="WhatsApp" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="mailto:?subject=Check this out&body={{ urlencode($blogUrl) }}">
-                                            <img src="{{ asset('frontend_assets/images/home/bemail.png') }}" class="ar-social-icon" alt="Email" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </span>
+                            </div>
                         </div>
-                    </figcaption>
-
-                    <time>{{ $blog->created_at->format('d-M-Y') }}</time>
-                </div>
-                @endif @endforeach
+                        {{-- Start the grid for the rest of the posts --}}
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        @else
+                        {{-- REGULAR POST CARD --}}
+                        <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl overflow-hidden group flex flex-col transition-all duration-300 hover:-translate-y-2" data-animate="fade-up" data-animate-delay="{{ ($loop->index - 1) * 100 }}">
+                            <a href="{{ url('blog/' . $blog->slug) }}" class="block relative">
+                                <img src="{{ asset('storage/' . $blog->main_image) }}" alt="{{ $blog->heading }}" class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300" />
+                            </a>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <p class="font-elegant text-sm text-gray-500 mb-2">{{ $blog->created_at->format('d M, Y') }}</p>
+                                <h3 class="font-display text-xl text-navy-dark font-bold mb-3 flex-grow">
+                                    <a href="{{ url('blog/' . $blog->slug) }}" class="hover:text-gold-accent transition-colors line-clamp-2">{{ $blog->heading }}</a>
+                                </h3>
+                                <div class="mt-auto pt-4 border-t border-gray-100">
+                                     <a href="{{ url('blog/' . $blog->slug) }}" class="font-display text-sm text-navy-dark font-bold group/link">
+                                        Read More <span class="inline-block transition-transform duration-300 group-hover/link:translate-x-1">&rarr;</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                    @endif
+                @endforeach
+                </div> {{-- Close the inner grid --}}
             </div>
 
-            <div class="btn_wrapper text-center" data-animate="fade-up">
-                <!--<div class="btn btn-btn border-black">-->
-                <!--    Load More-->
-                <!--    <img src="{{url('')}}/frontend_assets/icon/right-arrow.svg" alt="" class="svg" />-->
-                <!--</div>-->
+            <!-- Pagination -->
+            <div class="mt-20 pagination" data-animate="fade-up">
                  {{ $blogs->links() }}
             </div>
         </div>
     </div>
 </section>
+<!-- =================================================================================== -->
+<!-- END: BLOGS SECTION                                                                -->
+<!-- =================================================================================== -->
 
-@push('scripts') @endpush @stop
+@push('scripts')
+{{-- Main JS for sliders etc. should be handled in your master layout or a dedicated script file --}}
+@endpush 
+@stop

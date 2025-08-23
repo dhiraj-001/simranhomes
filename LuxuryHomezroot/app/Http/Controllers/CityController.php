@@ -149,7 +149,7 @@ class CityController extends Controller
 public function showCityProperties($slug)
 {
     $city = City::where('slug', $slug)->where('status', 1)->first();
-    
+    $cities = City::all();
     $banner = Banner::with('images')->where('page', 'property')->where('status', 1)->latest()->first();
     $testimonials = Testimonial::paginate(15);
 
@@ -159,9 +159,9 @@ public function showCityProperties($slug)
 
     $properties = Property::where('property_city_wise', $city->slug) // Or $city->id if ID is used
                           ->where('status', 1)
-                          ->get();
+                          ->paginate(15);
 
-    return view('Frontend.properties.all', compact('city', 'properties','banner','testimonials'));
+    return view('Frontend.properties.all', compact('city', 'properties','banner','testimonials', 'cities'));
 }
    
 

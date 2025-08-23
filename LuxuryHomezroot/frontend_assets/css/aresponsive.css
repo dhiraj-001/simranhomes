@@ -2767,10 +2767,6 @@
         padding: 40px 20px;
     }
 
-    .container {
-        padding: 0px 0px;
-    }
-
     .ar-price-card {
         flex: 1 1 75%;
     }
@@ -4292,10 +4288,6 @@
 
     .ar-prop-pd {
         padding: 40px 20px;
-    }
-
-    .container {
-        padding: 0px 0px;
     }
 
     .ar-price-card {

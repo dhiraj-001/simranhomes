@@ -12,13 +12,15 @@ export default defineConfig({
                 'frontend_assets/css/hoztab.css',
                 'frontend_assets/css/allprojects.css',
                 'frontend_assets/css/aresponsive.css',
+                'frontend_assets/css/contact.css',
+                'frontend_assets/css/property.css',
+                'frontend_assets/css/fancybox.css',
                 'frontend_assets/js/main.js',
                 'frontend_assets/js/svg-loader.js',
                 'frontend_assets/images/fav_sec.png',
                 'frontend_assets/images/fav.png',
                 'frontend_assets/images/logo.png',
                 'frontend_assets/images/main_logo.png',
-                'frontend_assets/images/home/fav_sec.png',
                 'frontend_assets/images/home/bfacebook.png',
                 'frontend_assets/images/home/btwitter.png',
                 'frontend_assets/images/home/blinkedin.png',
@@ -42,17 +44,28 @@ export default defineConfig({
                 'resources/css/custom.css',
                 'frontend_assets/images/home/fixedbg.webp',
                 'frontend_assets/images/home/footer_bg.jpg',
+                'frontend_assets/images/bg1.webp',
                 'frontend_assets/font/Champignon.ttf',
+                'frontend_assets/images/about/founder.webp',
+                'frontend_assets/images/about/vision.webp',
+                'frontend_assets/images/about/mission.webp',
+                'frontend_assets/images/about/strength.webp',
+                'frontend_assets/images/awards/award-1.png',
+                'frontend_assets/images/awards/award-2.png',
+                'frontend_assets/images/awards/award-3.png',
+                'frontend_assets/images/awards/award-4.png',
+                'frontend_assets/js/about.js',
             ],
             refresh: true,
         }),
     ],
     build: {
+        outDir: 'public/build', // This line is the key fix for the output directory
         rollupOptions: {
             output: {
                 assetFileNames: (assetInfo) => {
                     let extType = assetInfo.name.split('.').at(1);
-                    if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
+                    if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(extType)) { // Added webp here
                         extType = 'img';
                     }
                     return `assets/${extType}/[name]-[hash][extname]`;

@@ -1,10 +1,12 @@
 @extends('layouts.master') @section('title', $keyword->text) @section('content') @push('styles')
-<link rel="stylesheet" href="{{ url('') }}/frontend_assets/css/allprojects.css" />
-<link rel="stylesheet" href="{{ url('') }}/frontend_assets/css/developers.css" />
-<link rel="stylesheet" href="{{ url('') }}/frontend_assets/css/property.css" />
-<link rel="stylesheet" href="{{ url('') }}/frontend_assets/css/fancybox.css" />
+@vite([
+    'frontend_assets/css/allprojects.css',
+    'frontend_assets/css/developers.css',
+    'frontend_assets/css/property.css',
+    'frontend_assets/css/fancybox.css',
+    'frontend_assets/css/aresponsive.css'
+])
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
-<link rel="stylesheet" href="{{url('')}}/frontend_assets/css/aresponsive.css" />
 @endpush
 
 <section>
