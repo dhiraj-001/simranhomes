@@ -11,8 +11,15 @@ export default {
 
     theme: {
         extend: {
+            // Add the new color palette
+            colors: {
+                'navy': '#0A2342',
+                'golden': '#D4AF37',
+            },
+            // Add the new fonts
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Inter', ...defaultTheme.fontFamily.sans],
+                display: ['"Playfair Display"', ...defaultTheme.fontFamily.sans],
             },
         },
     },
