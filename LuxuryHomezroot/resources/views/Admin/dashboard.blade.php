@@ -139,10 +139,57 @@
             </div><!-- end row-->
 
             <div class="row">
-                <div class="col-xl-12">
-                    <div class="profile-user-dashboard"></div>
-                </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Mini Chart 1</h4>
+                <div id="mini-chart1" data-colors='["#1c84ee", "#e9e9ef"]' class="apex-charts" dir="ltr"></div>
             </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Mini Chart 2</h4>
+                <div id="mini-chart2" data-colors='["#1c84ee", "#e9e9ef"]' class="apex-charts" dir="ltr"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Mini Chart 3</h4>
+                <div id="mini-chart3" data-colors='["#1c84ee", "#e9e9ef"]' class="apex-charts" dir="ltr"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Mini Chart 4</h4>
+                <div id="mini-chart4" data-colors='["#1c84ee", "#e9e9ef"]' class="apex-charts" dir="ltr"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Market Overview</h4>
+                <div id="market-overview" data-colors='["#1c84ee", "#e9e9ef"]' class="apex-charts" dir="ltr"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Sales by Locations</h4>
+                <div id="sales-by-locations" data-colors='["#1c84ee"]' style="height: 200px"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
         </div>
@@ -152,7 +199,8 @@
 
 
     @push('scripts')
-
+    <!-- dashboard init -->
+    <script src="{{ url('') }}/admin_assets/js/pages/dashboard.init.js"></script>
     @endpush
 
 

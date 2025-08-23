@@ -384,8 +384,7 @@
         src="{{ url('') }}/admin_assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js">
     </script>
     <script src="{{ url('') }}/admin_assets/js/pages/allchart.js"></script>
-    <!-- dashboard init -->
-    <script src="{{ url('') }}/admin_assets/js/pages/dashboard.init.js"></script>
+    
     <script src="{{ url('') }}/admin_assets/js/app.js"></script>
     <!-- Required datatable js -->
     <script src="{{ url('') }}/admin_assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
@@ -403,8 +402,7 @@
     <script src="{{ url('') }}/admin_assets/js/pages/task-create.init.js"></script>
     <!-- ckeditor -->
     <script src="{{ url('') }}/admin_assets/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
-    <!-- init js -->
-    <script src="{{ url('') }}/admin_assets/js/pages/form-editor.init.js"></script>
+    
     <!-- jquery-knob plugin  -->
     <script src="{{ url('') }}/admin_assets/libs/jquery-knob/jquery.knob.min.js"></script>
     <!-- jquery-knob init -->

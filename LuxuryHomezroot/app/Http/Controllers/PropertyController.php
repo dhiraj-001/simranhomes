@@ -78,7 +78,7 @@ class PropertyController extends Controller
         $property->location = $request->location;
         $property->direction_link = $request->direction_link;
         $property->map = $request->map;
-        $property->status = $request->status;
+        $property->status = $request->has('status') ? 1 : 0;
         $property->meta_title = $request->meta_title;
         $property->meta_keywords = $request->meta_keywords;
         $property->meta_description = $request->meta_description;
@@ -227,7 +227,7 @@ class PropertyController extends Controller
         $property->location = $request->location;
         $property->direction_link = $request->direction_link;
         $property->map = $request->map;
-        $property->status = $request->status;
+        $property->status = $request->has('status') ? 1 : 0;
         $property->meta_title = $request->meta_title;
         $property->meta_keywords = $request->meta_keywords;
         $property->meta_description = $request->meta_description;
