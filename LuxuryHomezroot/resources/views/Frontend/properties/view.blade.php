@@ -47,19 +47,19 @@
             <!-- Key Specs -->
             <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-white/20 pt-6">
                 <div>
-                    <span class="text-sm text-gray-400 font-elegant">Starting Price</span>
+                    <span class=" text-gray-300 text-lg font-elegant">Starting Price</span>
                     <p class="font-display text-2xl font-bold">{{ $property->price }}</p>
                 </div>
                 <div>
-                    <span class="text-sm text-gray-400 font-elegant">Status</span>
+                    <span class=" text-gray-300 text-lg font-elegant">Status</span>
                     <p class="font-display text-2xl font-bold">{{ $property->property_status }}</p>
                 </div>
                 <div>
-                    <span class="text-sm text-gray-400 font-elegant">Configuration</span>
+                    <span class=" text-gray-300 text-lg font-elegant">Configuration</span>
                     <p class="font-display text-2xl font-bold">{{ $property->configuration }}</p>
                 </div>
                 <div>
-                    <span class="text-sm text-gray-400 font-elegant">Unit Size</span>
+                    <span class=" text-gray-300 text-lg font-elegant">Unit Size</span>
                     <p class="font-display text-2xl font-bold">{{ $property->unit_size }}</p>
                 </div>
             </div>
@@ -206,7 +206,7 @@
             <div class="lg:col-span-4">
                 <div class="sticky sticky-sidebar">
                     <div class="bg-navy-dark text-white rounded-2xl p-8" data-animate="fade-up">
-                        <h3 class="font-display text-2xl font-bold mb-4">Get In Touch!</h3>
+                        <h3 class="font-display text-navy text-2xl font-bold mb-4">Get In Touch!</h3>
                         <form class="space-y-4" action="{{ route('enquiry.store') }}" method="post">
                             @csrf
                             <input type="hidden" name="type" value="property">
@@ -216,11 +216,11 @@
                             <input type="email" name="email" placeholder="Your Email" required class="w-full bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0" />
                             <input type="text" name="mobile" placeholder="Mobile Number" required class="w-full bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0" />
                             <textarea name="message" placeholder="Your Message" rows="4" class="w-full bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0"></textarea>
-                            <button type="submit" class="w-full bg-gold-accent text-navy-dark font-bold py-3 rounded-md hover:bg-white transition-colors duration-300 font-display">Submit Enquiry</button>
+                            <button type="submit" class="w-full bg-gold-accent bg-navy font-bold py-3 rounded-md hover:bg-navy/80 transition-colors duration-300 font-display">Submit Enquiry</button>
                         </form>
                     </div>
                      <div class="text-center mt-6" data-animate="fade-up">
-                        <a href="{{ asset('storage/' . $property->brochure) }}" download class="inline-flex items-center justify-center w-full bg-white text-navy-dark font-bold py-3 rounded-md hover:bg-gray-200 transition-colors duration-300 font-display shadow-md">
+                        <a href="{{ asset('storage/' . $property->brochure) }}" download class="inline-flex items-center justify-center w-full bg-gray-100 text-navy-dark font-bold py-3 rounded-md hover:bg-gray-200 transition-colors duration-300 font-display shadow-md">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                             Download Brochure
                         </a>

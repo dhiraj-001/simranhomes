@@ -1,0 +1,12 @@
+@import "../../admin_assets/libs/select2/css/select2.min.css";
+@import "../../admin_assets/libs/dropzone/min/dropzone.min.css";
+@import "../../admin_assets/libs/sweetalert2/sweetalert2.min.css";
+@import "../../admin_assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css";
+@import "../../admin_assets/css/preloader.min.css";
+@import "../../admin_assets/css/bootstrap.min.css";
+@import "../../admin_assets/css/icons.min.css";
+@import "../../admin_assets/css/app.min.css";
+@import "../../admin_assets/css/abhi-custom.css";
+@import "../../admin_assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css";
+@import "../../admin_assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css";
+@import "../../admin_assets/libs/choices.js/public/assets/styles/choices.min.css";

@@ -72,6 +72,15 @@
                     </div>
                     <div class="flex items-start">
                         <div class="flex-shrink-0 w-12 h-12 bg-gold-accent/10 rounded-lg flex items-center justify-center mr-4">
+                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+                        </div>
+                        <div>
+                            <h5 class="font-display text-lg font-bold text-navy-dark">Mobile no</h5>
+                            <p class="font-elegant text-sm text-gray-600">{!! $global_settings->contact_number  !!}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gold-accent/10 rounded-lg flex items-center justify-center mr-4">
                             <svg class="w-6 h-6 text-gold-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         </div>
                         <div>
@@ -90,8 +99,8 @@
                     <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:ring-gold-accent focus:border-gold-accent" name="name" placeholder="Name*" required/>
                     <input type="email" class="w-full p-3 border border-gray-300 rounded-md focus:ring-gold-accent focus:border-gold-accent" name="email" placeholder="Email*" required/>
                     <input type="tel" class="w-full p-3 border border-gray-300 rounded-md focus:ring-gold-accent focus:border-gold-accent" name="mobile" placeholder="Phone*" required />
-                    <textarea class="w-full p-3 border border-gray-300 rounded-md focus:ring-gold-accent focus:border-gold-accent" name="message" rows="4" placeholder="Your Message..."></textarea>
-                    <button type="submit" class="w-full bg-navy-dark text-white font-bold py-3 rounded-md hover:bg-gold-accent hover:text-navy-dark transition-colors duration-300 font-display">Send Message</button>
+                    <textarea class="w-full p-3  border border-gray-300 rounded-md focus:ring-gold-accent focus:border-gold-accent" name="message" rows="4" placeholder="Your Message..."></textarea>
+                    <button type="submit" class="w-full bg-navy text-white font-bold py-3 rounded-md hover:bg-gold-accent hover:text-navy-dark transition-colors duration-300 font-display">Send Message</button>
                 </form>
             </div>
 

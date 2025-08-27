@@ -160,8 +160,8 @@
         <p class="max-w-3xl text-lg text-gray-200 mb-8 font-elegant" data-animate="fade-up" data-animate-delay="300">
             {!! $banner->description !!}
         </p>
-        <div class="w-full max-w-4xl" data-animate="fade-up" data-animate-delay="450">
-            <form action="{{ route('search.properties') }}" method="GET" class="bg-white/10 backdrop-blur-md p-4 rounded-lg shadow-lg">
+        <div class="w-full max-w-4xl backdrop-blur-md " data-animate="fade-up" data-animate-delay="450">
+            <form action="{{ route('search.properties') }}" method="GET" class=" p-4 bg-slate-400/10 rounded-lg shadow-lg">
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
                     <select name="city" class="md:col-span-2 w-full bg-white/10 text-white border-gray-600 rounded-md px-4 py-3 focus:ring-golden focus:border-golden font-modern">
                         <option value="" class="text-black">Select City</option>
@@ -231,13 +231,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center text-white">
             @foreach($statistics as $statistic)
             <div data-animate="fade-up" data-animate-delay="{{ $loop->index * 100 }}">
-                @if(str_contains(strtolower($statistic->label), 'projects'))
-                    <img src="{{ Vite::asset('frontend_assets/icon/building.png') }}" alt="{{ $statistic->label }}" class="h-12 w-12 mx-auto mb-4" />
-                @elseif(str_contains(strtolower($statistic->label), 'satisfied') || str_contains(strtolower($statistic->label), 'happy'))
-                    <img src="{{ Vite::asset('frontend_assets/icon/happy.png') }}" alt="{{ $statistic->label }}" class="h-12 w-12 mx-auto mb-4" />
-                @else
+                
                     <img src="{{ url('storage/' . $statistic->icon_path) }}" alt="{{ $statistic->label }}" class="h-12 w-12 mx-auto mb-4" />
-                @endif
+               
                 <p class="text-5xl font-bold text-golden font-display"><span class="count" data-count="{{ $statistic->count }}">{{ $statistic->count }}</span>+</p>
                 <p class="text-gray-300 mt-2 font-elegant">{{ $statistic->label }}</p>
             </div>
@@ -376,15 +372,7 @@
                                 </div>
                             </div>
                             
-                            <!-- Enhanced Explore Button -->
-                            <a href="{{ url('property/' . $property->slug) }}" class="absolute bottom-4 right-4 bg-gradient-to-r from-navy via-navy/90 to-golden text-white hover:from-golden hover:to-yellow-500 px-4 py-2 rounded-full font-medium text-sm hover:-translate-y-1 transition-all duration-300 group/button shadow-lg">
-                                <span class="flex items-center">
-                                    Explore
-                                    <svg class="w-4 h-4 ml-1 transform transition-transform duration-300 group-hover/button:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                    </svg>
-                                </span>
-                            </a>
+                          
                         </div>
                         
                         <!-- Enhanced Content Section -->
@@ -583,59 +571,7 @@
     </div>
 </section>
 
-<!-- Testimonial Section -->
-<section class="bg-navy py-24 w-full overflow-hidden" data-animate="fade-up">
-    <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
-        <div class="text-center mb-12">
-            @php $headingParts = explode('||', $global_settings->home_sec8_heading); @endphp
-            <h2 class="font-display text-4xl text-white mb-4">
-                {{ $headingParts[0] ?? '' }} <span class="text-golden">{{ $headingParts[1] ?? '' }}</span>
-            </h2>
-            <p class="text-gray-300 max-w-2xl mx-auto font-elegant">{!! $global_settings->home_sec8_paragraph !!}</p>
-        </div>
-
-        <div class="swiper testimonial_slider w-full relative">
-            <div class="swiper-wrapper py-16">
-                @foreach($testimonials as $testimonial)
-                    <div class="swiper-slide h-full">
-                        <div class="testimonial-card bg-white/10 p-6 sm:p-8 rounded-lg h-full flex flex-col text-center max-w-sm mx-auto shadow-sm shadow-yellow-200 transition-all duration-500 ease-out hover:bg-white/20 hover:shadow-lg hover:shadow-golden/60 hover:-translate-y-2 hover:scale-105 group relative">
-                            <div class="relative">
-                                <svg class="quote-icon w-10 h-10 text-golden mx-auto mb-4 transition-all duration-500 group-hover:text-yellow-300 group-hover:scale-110" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18"><path d="M6.62 1.833A1 1 0 005.38.65L.21 12.15a1 1 0 00.9 1.28h.21a1 1 0 00.9-1.28L6.62 1.833zM12.62 1.833A1 1 0 0011.38.65L6.21 12.15a1 1 0 00.9 1.28h.21a1 1 0 00.9-1.28l4.31-10.3z"/></svg>
-                                <div class="absolute inset-0 bg-gradient-to-br from-golden/0 to-yellow-400/0 rounded-lg opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
-                            </div>
-                            <p class="testimonial-text text-gray-300 italic mb-6 flex-grow font-elegant text-sm sm:text-base transition-all duration-500 group-hover:text-white group-hover:font-medium">"{!! $testimonial->message !!}"</p>
-                            <div class="testimonial-author transition-all duration-500">
-                                <h3 class="font-display text-lg sm:text-xl text-white font-bold group-hover:text-golden transition-colors duration-500">{{ $testimonial->name }}</h3>
-                                <p class="text-golden text-sm font-elegant group-hover:text-yellow-300 transition-colors duration-500">{{ $testimonial->position }}</p>
-                                <div class="flex justify-center mt-4 space-x-1">
-                                    @for ($i = 1; $i <= 5; $i++)
-                                        <svg class="star-icon w-4 h-4 sm:w-5 sm:h-5 {{ $i <= $testimonial->star ? 'text-golden' : 'text-gray-300' }} transition-all duration-500 group-hover:scale-110 group-hover:text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                                    @endfor
-                                </div>
-                            </div>
-                            <!-- Hover Border Effect -->
-                            <div class="absolute inset-0 border-2 border-transparent rounded-lg group-hover:border-golden/50 transition-all duration-500 pointer-events-none"></div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-            
-            <!-- Navigation Arrows -->
-            <button class="testimonial-button-prev absolute left-72 bottom-0 -translate-y-1/5 z-10 bg-white/10 hover:bg-golden text-white hover:text-navy w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 -ml-5 hidden sm:flex">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-            </button>
-            <button class="testimonial-button-next absolute right-72 bottom-0 -translate-y-1/5 z-10 bg-white/10 hover:bg-golden text-white hover:text-navy w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 -mr-5 hidden sm:flex">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </button>
-            
-            <div class="testimonial-pagination swiper-pagination"></div>
-        </div>
-    </div>
-</section>
+<x-testimonial-section :global_settings="$global_settings" :testimonials="$testimonials" />
 
 <!-- Blogs Section -->
 <section class="py-24 bg-gray-50" data-animate="fade-up">
@@ -728,23 +664,7 @@
             },
         });
 
-        const testimonial_slider = new Swiper('.testimonial_slider', {
-            loop: true,
-            slidesPerView: 1,
-            spaceBetween: 30,
-            pagination: {
-                el: '.testimonial-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.testimonial-button-next',
-                prevEl: '.testimonial-button-prev',
-            },
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-            },
-        });
+        
         
         const global_slider = new Swiper('.global_slider', {
             loop: true,

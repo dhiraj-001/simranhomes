@@ -7,7 +7,9 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                
                 'frontend_assets/sass/home/home.css',
+                'frontend_assets/css/blogs.css',
                 'frontend_assets/css/developers.css',
                 'frontend_assets/css/hoztab.css',
                 'frontend_assets/css/allprojects.css',
@@ -50,22 +52,32 @@ export default defineConfig({
                 'frontend_assets/images/about/vision.webp',
                 'frontend_assets/images/about/mission.webp',
                 'frontend_assets/images/about/strength.webp',
+                'frontend_assets/images/about/texture-bg.webp', 
                 'frontend_assets/images/awards/award-1.png',
                 'frontend_assets/images/awards/award-2.png',
                 'frontend_assets/images/awards/award-3.png',
                 'frontend_assets/images/awards/award-4.png',
                 'frontend_assets/js/about.js',
+                // Admin Assets
+                'admin_assets/css/app.css',
+                'admin_assets/css/bootstrap.css',
+                'admin_assets/css/icons.css',
+                'admin_assets/css/preloader.css',
+                'admin_assets/css/abhi-custom.css',
+                'admin_assets/js/app.js',
+                // 'admin_assets/js/pages/dashboard.init.js', // Commented out due to JS syntax issues
+                // Add other page-specific JS files as needed
             ],
             refresh: true,
         }),
     ],
     build: {
-        outDir: 'public/build', // This line is the key fix for the output directory
+        outDir: 'public/build',
         rollupOptions: {
             output: {
                 assetFileNames: (assetInfo) => {
                     let extType = assetInfo.name.split('.').at(1);
-                    if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(extType)) { // Added webp here
+                    if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(extType)) {
                         extType = 'img';
                     }
                     return `assets/${extType}/[name]-[hash][extname]`;

@@ -158,11 +158,8 @@
 <!-- =================================================================================== -->
 <!-- START: TESTIMONIALS SECTION                                                       -->
 <!-- =================================================================================== -->
-<x-testimonial-section 
-    :testimonials="$testimonials" 
-    :global-settings="$global_settings" 
-    :gray-bg="false" 
-/>
+<x-testimonial-section :global_settings="$global_settings" :testimonials="$testimonials" />
+
 <!-- =================================================================================== -->
 <!-- END: TESTIMONIALS SECTION                                                         -->
 <!-- =================================================================================== -->

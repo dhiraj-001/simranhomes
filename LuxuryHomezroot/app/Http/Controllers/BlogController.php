@@ -164,6 +164,11 @@ public function blog($slug)
     // Fetch the specific blog
     $blog = Blog::where('slug', $slug)->firstOrFail();
 
+    // Correct the image paths in full_content
+    if ($blog->full_content) {
+        $blog->full_content = str_replace('/storage/app/public/', '/storage/', $blog->full_content);
+    }
+
     // Fetch latest 4 blogs for sidebar or related blogs
     $blogs = Blog::latest()->paginate(4);
 

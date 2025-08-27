@@ -112,10 +112,7 @@
                              alt="Luxury Homez Office Interior" 
                              class="w-full object-cover rounded-2xl shadow-2xl relative z-10">
                         <!-- Overlapping stats card -->
-                        <div class="bg-navy-dark text-white p-6 rounded-2xl shadow-lg absolute -bottom-12 -left-12 z-20 w-4/5">
-                            <p class="font-display text-4xl text-gold-accent font-bold">15+</p>
-                            <p class="text-sm font-elegant text-gray-300 uppercase tracking-wider mt-1">Years of Unmatched Experience</p>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

@@ -23,7 +23,7 @@
     <div class="banner blog-detail-banner">
         <div class="bg">
             <img
-                src="https://luxuryhomez.sgpsspn.com/storage/app/public/blogs/2025/06/1750225370-blog.jpg"
+                src="{{ asset('storage/blogs/2025/06/1750225370-blog.jpg') }}"
                 alt="Is Real Estate Really Shaping the Indian Skyline?"
                 title="Is Real Estate Really Shaping the Indian Skyline?"
             />

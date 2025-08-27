@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('title', 'Luxury Homez')</title>
+    <title>@yield('title', 'Simran Homes')</title>
     <meta name="keywords" content="@yield('keywords')" />
     <meta name="description" content="@yield('description')" />
 
@@ -173,7 +173,7 @@
         /* Styles for Floating Action Buttons & Modal from old code */
         .footer-links {
             position: fixed;
-            bottom: 20px;
+            bottom: 100px;
             right: 20px;
             z-index: 1000;
             display: flex;
@@ -278,7 +278,7 @@
     </main>
 
     <!-- Enhanced Footer Section -->
-    <footer class="bg-gradient-to-b from-navy to-black text-white pt-20 pb-12">
+    <footer class="bg-gradient-to-b from-navy to-black text-white pt-20 pb-12 px-12">
         <div class="container mx-auto px-6">
             <!-- Footer Top Section with Enhanced Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
@@ -286,7 +286,7 @@
                 <div class="lg:col-span-1">
                     @if($global_settings && $global_settings->logo)
                         <a href="/" class="mb-6 inline-block transform hover:scale-105 transition-transform duration-300">
-                            <img src="{{ asset('storage/' . $global_settings->logo) }}" alt="Luxury Homez Logo" class="h-12 filter brightness-110" />
+                            <img src="{{ asset('storage/' . $global_settings->logo) }}" alt="Luxury Homez Logo" class="h-20 filter brightness-110" />
                         </a>
                     @endif
                     <p class="text-gray-300 text-sm leading-relaxed mb-6">{!! $global_settings->footer_about !!}</p>
@@ -353,20 +353,20 @@
                     </h5>
                     <ul class="space-y-4">
                         <li class="flex items-start group">
-                            <div class="w-8 h-8 bg-golden bg-opacity-20 rounded-full flex items-center justify-center mr-3 flex-shrink-0 group-hover:bg-opacity-30 transition-colors">
-                                <svg class="w-4 h-4 text-golden" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                            <div class=" bg-transparent bg-opacity-20 rounded-full flex items-center justify-center mr-3 flex-shrink-0 group-hover:bg-opacity-30 transition-colors">
+                                <svg class="w-6 h-6 text-golden" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
                             </div>
                             <span class="text-gray-300 text-sm leading-relaxed">{!! $global_settings->address !!}</span>
                         </li>
                         <li class="flex items-start group">
-                            <div class="w-8 h-8 bg-golden bg-opacity-20 rounded-full flex items-center justify-center mr-3 flex-shrink-0 group-hover:bg-opacity-30 transition-colors">
-                                <svg class="w-4 h-4 text-golden" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                            <div class=" bg-transparent bg-opacity-20 rounded-full flex items-center justify-center mr-3 flex-shrink-0 group-hover:bg-opacity-30 transition-colors">
+                                <svg class="w-6 h-6 text-golden" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
                             </div>
                             <a href="mailto:{{ $global_settings->email }}" class="text-gray-300 hover:text-golden transition-colors duration-300">{{ $global_settings->email }}</a>
                         </li>
                         <li class="flex items-start group">
-                            <div class="w-8 h-8 bg-golden bg-opacity-20 rounded-full flex items-center justify-center mr-3 flex-shrink-0 group-hover:bg-opacity-30 transition-colors">
-                                <svg class="w-4 h-4 text-golden" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+                            <div class=" bg-transparent bg-opacity-20 rounded-full flex items-center justify-center mr-3 flex-shrink-0 group-hover:bg-opacity-30 transition-colors">
+                                <svg class="w-6 h-6 text-golden" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
                             </div>
                             <a href="tel:{{ $global_settings->contact_number }}" class="text-gray-300 hover:text-golden transition-colors duration-300">{{ $global_settings->contact_number }}</a>
                         </li>

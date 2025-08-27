@@ -84,16 +84,16 @@
                 <div class="sticky top-28">
                     <!-- Contact Form -->
                     <div class="bg-navy-dark text-white rounded-2xl p-8 mb-8" data-animate="fade-up">
-                        <h3 class="font-display text-2xl font-bold mb-4">Get In Touch!</h3>
+                        <h3 class="font-display text-navy text-2xl font-bold mb-4">Get In Touch!</h3>
                         <form class="space-y-4" action="{{ route('enquiry.store') }}" method="post">
                             @csrf
                             <input type="hidden" name="type" value="blog">
                             <input type="hidden" name="page_url" value="{{ url()->current() }}">
-                            <input type="text" placeholder="Your Name" name="name" required class="w-full bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0" />
-                            <input type="email" name="email" placeholder="Your Email" required class="w-full bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0" />
-                            <input type="text" name="mobile" placeholder="Mobile Number" required class="w-full bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0" />
-                            <textarea name="message" placeholder="Your Message" rows="4" class="w-full bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0"></textarea>
-                            <button type="submit" class="w-full bg-gold-accent text-navy-dark font-bold py-3 rounded-md hover:bg-white transition-colors duration-300 font-display">Submit</button>
+                            <input type="text" placeholder="Your Name" name="name" required class="w-full border-navy/20 border-1 bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent" />
+                            <input type="email" name="email" placeholder="Your Email" required class="w-full border-navy/20 border-1 bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent" />
+                            <input type="text" name="mobile" placeholder="Mobile Number" required class="w-full border-navy/20 border-1 bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent" />
+                            <textarea name="message" placeholder="Your Message" rows="4" class="w-full border-navy/20 border-1 bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent"></textarea>
+                            <button type="submit" class="w-full bg-gold-accent bg-navy font-bold py-3 rounded-md hover:bg-white transition-colors duration-300 font-display">Submit</button>
                         </form>
                     </div>
 
@@ -128,7 +128,7 @@
 <!-- START: TRENDING PROJECTS SECTION                                                  -->
 <!-- =================================================================================== -->
 <section class="bg-gray-50 py-20 sm:py-28">
-    <div class="container mx-auto px-6">
+    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-12">
                 <h2 class="font-display text-4xl text-navy-dark font-bold">Trending <span class="text-gold-accent">Projects</span></h2>

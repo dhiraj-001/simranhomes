@@ -24,7 +24,7 @@
     @if($banner && $banner->type === 'video' && $banner->video)
         <div class="bg">
             <video playsinline autoplay muted loop width="100%" height="600">
-                <source src="{{ asset('storage/app/public/' . $banner->video) }}" type="video/mp4" />
+                <source src="{{ asset('storage/' . $banner->video) }}" type="video/mp4" />
             </video>
         </div>
         <div class="banner-wrapper">
@@ -51,7 +51,7 @@
             <div class="ar-hero-section">
                 <div class="ar-hero-slider" id="ar-hero-slider">
                     @foreach($banner->images as $image)
-                        <div class="ar-hero-slide" style="background-image: url('{{ asset('storage/app/public/' . $image->image) }}');"></div>
+                        <div class="ar-hero-slide" style="background-image: url('{{ asset('storage/' . $image->image) }}');"></div>
                     @endforeach
                 </div>
             </div>

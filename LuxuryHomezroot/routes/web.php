@@ -103,55 +103,67 @@ Route::get('/developers', [BuilderController::class, 'showBuildersTab'])->name('
 
 
 //Admin Route
-Route::get('admin/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
-Route::put('admin/profile', [AdminProfileController::class, 'update'])->name('profile.partials.update');
+Route::middleware('auth')->group(function () {
+    Route::get('admin/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('admin/profile', [AdminProfileController::class, 'update'])->name('profile.partials.update');
+});
 
 
 // Admin Page Root
-Route::get('admin/dashboard', [AdminController::class, 'index'])->name('Admin.dashboard');
-Route::resource('admin/pages', PageController::class, ['as' => 'admin']);
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('Admin.dashboard');
+    Route::resource('admin/pages', PageController::class, ['as' => 'admin']);
+});
 
 
 
 
 // Properties routes
-Route::get('admin/properties', [PropertyController::class, 'index'])->name('Admin.properties.index');
-Route::get('admin/property/create', [PropertyController::class, 'create'])->name('Admin.properties.create');
-Route::post('admin/property', [PropertyController::class, 'store'])->name('Admin.properties.store');
-Route::get('admin/property/{id}/edit', [PropertyController::class, 'edit'])->name('Admin.properties.edit');
-Route::put('admin/property/{id}', [PropertyController::class, 'update'])->name('Admin.properties.update');
-Route::delete('admin/property/{id}', [PropertyController::class, 'destroy'])->name('Admin.properties.destroy');
-Route::post('admin/properties/update-order', [PropertyController::class, 'updateOrder'])->name('Admin.properties.updateOrder');
+Route::middleware('auth')->group(function () {
+    Route::get('admin/properties', [PropertyController::class, 'index'])->name('Admin.properties.index');
+    Route::get('admin/property/create', [PropertyController::class, 'create'])->name('Admin.properties.create');
+    Route::post('admin/property', [PropertyController::class, 'store'])->name('Admin.properties.store');
+    Route::get('admin/property/{id}/edit', [PropertyController::class, 'edit'])->name('Admin.properties.edit');
+    Route::put('admin/property/{id}', [PropertyController::class, 'update'])->name('Admin.properties.update');
+    Route::delete('admin/property/{id}', [PropertyController::class, 'destroy'])->name('Admin.properties.destroy');
+    Route::post('admin/properties/update-order', [PropertyController::class, 'updateOrder'])->name('Admin.properties.updateOrder');
+});
 
 
 
 
 // Blogs routes
-Route::get('admin/blogs', [BlogController::class, 'index'])->name('Admin.blogs.index');
-Route::get('admin/blog/create', [BlogController::class, 'create'])->name('Admin.blogs.create');
-Route::post('admin/blog', [BlogController::class, 'store'])->name('Admin.blogs.store');
-Route::get('admin/blog/{id}/edit', [BlogController::class, 'edit'])->name('Admin.blogs.edit');
-Route::put('admin/blog/{id}', [BlogController::class, 'update'])->name('Admin.blogs.update');
-Route::delete('admin/blog/{id}', [BlogController::class, 'destroy'])->name('Admin.blogs.destroy');
+Route::middleware('auth')->group(function () {
+    Route::get('admin/blogs', [BlogController::class, 'index'])->name('Admin.blogs.index');
+    Route::get('admin/blog/create', [BlogController::class, 'create'])->name('Admin.blogs.create');
+    Route::post('admin/blog', [BlogController::class, 'store'])->name('Admin.blogs.store');
+    Route::get('admin/blog/{id}/edit', [BlogController::class, 'edit'])->name('Admin.blogs.edit');
+    Route::put('admin/blog/{id}', [BlogController::class, 'update'])->name('Admin.blogs.update');
+    Route::delete('admin/blog/{id}', [BlogController::class, 'destroy'])->name('Admin.blogs.destroy');
+});
 
 
 
 // Banner Routes
-Route::get('admin/banners', [BannerController::class, 'index'])->name('Admin.banners.index');
-Route::get('admin/banner/create', [BannerController::class, 'create'])->name('Admin.banners.create');
-Route::post('admin/banner', [BannerController::class, 'store'])->name('Admin.banners.store');
-Route::get('admin/banner/{id}/edit', [BannerController::class, 'edit'])->name('Admin.banners.edit');
-Route::put('admin/banner/{id}', [BannerController::class, 'update'])->name('Admin.banners.update');
-Route::delete('admin/banner/{id}', [BannerController::class, 'destroy'])->name('Admin.banners.destroy');
+Route::middleware('auth')->group(function () {
+    Route::get('admin/banners', [BannerController::class, 'index'])->name('Admin.banners.index');
+    Route::get('admin/banner/create', [BannerController::class, 'create'])->name('Admin.banners.create');
+    Route::post('admin/banner', [BannerController::class, 'store'])->name('Admin.banners.store');
+    Route::get('admin/banner/{id}/edit', [BannerController::class, 'edit'])->name('Admin.banners.edit');
+    Route::put('admin/banner/{id}', [BannerController::class, 'update'])->name('Admin.banners.update');
+    Route::delete('admin/banner/{id}', [BannerController::class, 'destroy'])->name('Admin.banners.destroy');
+});
 
 
  // Keywords
-Route::get('admin/keywords', [KeywordController::class, 'index'])->name('Admin.keywords.index');
-Route::get('admin/keyword/create', [KeywordController::class, 'create'])->name('Admin.keywords.create');
-Route::post('admin/keyword', [KeywordController::class, 'store'])->name('Admin.keywords.store');
-Route::get('admin/keyword/{id}/edit', [KeywordController::class, 'edit'])->name('Admin.keywords.edit');
-Route::put('admin/keyword/{id}', [KeywordController::class, 'update'])->name('Admin.keywords.update');
-Route::delete('admin/keyword/{id}', [KeywordController::class, 'destroy'])->name('Admin.keywords.destroy');
+Route::middleware('auth')->group(function () {
+    Route::get('admin/keywords', [KeywordController::class, 'index'])->name('Admin.keywords.index');
+    Route::get('admin/keyword/create', [KeywordController::class, 'create'])->name('Admin.keywords.create');
+    Route::post('admin/keyword', [KeywordController::class, 'store'])->name('Admin.keywords.store');
+    Route::get('admin/keyword/{id}/edit', [KeywordController::class, 'edit'])->name('Admin.keywords.edit');
+    Route::put('admin/keyword/{id}', [KeywordController::class, 'update'])->name('Admin.keywords.update');
+    Route::delete('admin/keyword/{id}', [KeywordController::class, 'destroy'])->name('Admin.keywords.destroy');
+});
 
 
 
@@ -160,46 +172,54 @@ Route::delete('admin/keyword/{id}', [KeywordController::class, 'destroy'])->name
 
 
 // Amenities routes
-Route::get('admin/amenities', [AmenityController::class, 'index'])->name('Admin.amenities.index');
-Route::get('admin/amenity/create', [AmenityController::class, 'create'])->name('Admin.amenities.create');
-Route::post('admin/amenity', [AmenityController::class, 'store'])->name('Admin.amenities.store');
-Route::get('admin/amenity/{id}/edit', [AmenityController::class, 'edit'])->name('Admin.amenities.edit');
-Route::put('admin/amenity/{id}', [AmenityController::class, 'update'])->name('Admin.amenities.update');
-Route::delete('admin/amenity/{id}', [AmenityController::class, 'destroy'])->name('Admin.amenities.destroy');
+Route::middleware('auth')->group(function () {
+    Route::get('admin/amenities', [AmenityController::class, 'index'])->name('Admin.amenities.index');
+    Route::get('admin/amenity/create', [AmenityController::class, 'create'])->name('Admin.amenities.create');
+    Route::post('admin/amenity', [AmenityController::class, 'store'])->name('Admin.amenities.store');
+    Route::get('admin/amenity/{id}/edit', [AmenityController::class, 'edit'])->name('Admin.amenities.edit');
+    Route::put('admin/amenity/{id}', [AmenityController::class, 'update'])->name('Admin.amenities.update');
+    Route::delete('admin/amenity/{id}', [AmenityController::class, 'destroy'])->name('Admin.amenities.destroy');
+});
 
 
 
 
 // Builder routes
-Route::get('admin/builders', [BuilderController::class, 'index'])->name('Admin.builders.index');
-Route::get('admin/builder/create', [BuilderController::class, 'create'])->name('Admin.builders.create');
-Route::post('admin/builder', [BuilderController::class, 'store'])->name('Admin.builders.store');
-Route::get('admin/builder/{id}/edit', [BuilderController::class, 'edit'])->name('Admin.builders.edit');
-Route::put('admin/builder/{id}', [BuilderController::class, 'update'])->name('Admin.builders.update');
-Route::delete('admin/builder/{id}', [BuilderController::class, 'destroy'])->name('Admin.builders.destroy');
+Route::middleware('auth')->group(function () {
+    Route::get('admin/builders', [BuilderController::class, 'index'])->name('Admin.builders.index');
+    Route::get('admin/builder/create', [BuilderController::class, 'create'])->name('Admin.builders.create');
+    Route::post('admin/builder', [BuilderController::class, 'store'])->name('Admin.builders.store');
+    Route::get('admin/builder/{id}/edit', [BuilderController::class, 'edit'])->name('Admin.builders.edit');
+    Route::put('admin/builder/{id}', [BuilderController::class, 'update'])->name('Admin.builders.update');
+    Route::delete('admin/builder/{id}', [BuilderController::class, 'destroy'])->name('Admin.builders.destroy');
+});
 
 
 
 
 
 // Testimonial routes
-Route::get('admin/testimonials', [TestimonialController::class, 'index'])->name('Admin.testimonials.index');
-Route::get('admin/testimonial/create', [TestimonialController::class, 'create'])->name('Admin.testimonials.create');
-Route::post('admin/testimonial', [TestimonialController::class, 'store'])->name('Admin.testimonials.store');
-Route::get('admin/testimonial/{id}/edit', [TestimonialController::class, 'edit'])->name('Admin.testimonials.edit');
-Route::put('admin/testimonial/{id}', [TestimonialController::class, 'update'])->name('Admin.testimonials.update');
-Route::delete('admin/testimonial/{id}', [TestimonialController::class, 'destroy'])->name('Admin.testimonials.destroy');
+Route::middleware('auth')->group(function () {
+    Route::get('admin/testimonials', [TestimonialController::class, 'index'])->name('Admin.testimonials.index');
+    Route::get('admin/testimonial/create', [TestimonialController::class, 'create'])->name('Admin.testimonials.create');
+    Route::post('admin/testimonial', [TestimonialController::class, 'store'])->name('Admin.testimonials.store');
+    Route::get('admin/testimonial/{id}/edit', [TestimonialController::class, 'edit'])->name('Admin.testimonials.edit');
+    Route::put('admin/testimonial/{id}', [TestimonialController::class, 'update'])->name('Admin.testimonials.update');
+    Route::delete('admin/testimonial/{id}', [TestimonialController::class, 'destroy'])->name('Admin.testimonials.destroy');
+});
 
 
 
 // City routes
-Route::get('admin/cities', [CityController::class, 'index'])->name('Admin.cities.index');
-Route::get('admin/city/create', [CityController::class, 'create'])->name('Admin.cities.create');
-Route::post('admin/city', [CityController::class, 'store'])->name('Admin.cities.store');
-Route::get('admin/city/{id}/edit', [CityController::class, 'edit'])->name('Admin.cities.edit');
-Route::put('admin/city/{id}', [CityController::class, 'update'])->name('Admin.cities.update');
-Route::post('admin/city/update-order', [CityController::class, 'updateOrder'])->name('Admin.cities.updateOrder');
-Route::delete('admin/city/{id}', [CityController::class, 'destroy'])->name('Admin.cities.destroy');
+Route::middleware('auth')->group(function () {
+    Route::get('admin/cities', [CityController::class, 'index'])->name('Admin.cities.index');
+    Route::get('admin/city/create', [CityController::class, 'create'])->name('Admin.cities.create');
+    Route::post('admin/city', [CityController::class, 'store'])->name('Admin.cities.store');
+    Route::get('admin/city/{id}/edit', [CityController::class, 'edit'])->name('Admin.cities.edit');
+    Route::put('admin/city/{id}', [CityController::class, 'update'])->name('Admin.cities.update');
+    Route::post('admin/city/update-order', [CityController::class, 'updateOrder'])->name('Admin.cities.updateOrder');
+    Route::delete('admin/city/{id}', [CityController::class, 'destroy'])->name('Admin.cities.destroy');
+});
 
 
 

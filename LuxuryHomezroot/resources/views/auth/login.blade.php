@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Login | Luxury Homez</title>
+    <title>Login | Simran Solution</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- App favicon -->
@@ -35,14 +35,14 @@
                             <div class="d-flex flex-column h-100">
                                 <div class="mb-4 mb-md-5 text-center">
                                     <a href="{{url('')}}/" class="d-block auth-logo">
-                                        <img src="{{ Vite::asset('admin_assets/images/main_logo.png') }}" alt="" height="40"> 
+                                        <img src="{{ Vite::asset('admin_assets/images/main_logo.png') }}" alt="" height="120"> 
                                         <span class="logo-txt"></span>
                                     </a>
                                 </div>
                                 <div class="auth-content my-auto">
                                     <div class="text-center">
                                         <h5 class="mb-0">Welcome Back !</h5>
-                                        <p class="text-muted mt-2">Sign in to continue to Luxury Homez.</p>
+                                        <p class="text-muted mt-2">Sign in to continue to Simran Home Solution</p>
                                     </div>
 
                                     <form class="mt-4 pt-2" method="POST" action="{{ route('login') }}">

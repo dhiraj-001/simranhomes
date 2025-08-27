@@ -18,7 +18,7 @@
                 <div class="swiper-slide">
                     <div class="item-md global_col ar-key-height">
                         <a href="{{ url('property/' . $property->slug) }}" class="figure">
-                            <img src="{{ asset('storage/app/public/' . $property->main_image) }}" alt="{{ $property->heading }}" />
+                            <img src="{{ asset('storage/' . $property->main_image) }}" alt="{{ $property->heading }}" />
                         </a>
                         <div class="ar-key-center">
                             <div class="ar-keyslides-section">
@@ -98,7 +98,7 @@
                         <div class="prop_col">
                             <a href="{{ url('property/' . $item->slug) }}">
                                 <figure>
-                                    <img src="{{ asset('storage/app/public/' . $item->main_image) }}" class="prop_img" alt="{{ $item->heading }}" />
+                                    <img src="{{ asset('storage/' . $item->main_image) }}" class="prop_img" alt="{{ $item->heading }}" />
                                     <a href="{{ url('property/' . $item->slug) }}" class="exp_pro"> Explore projects <img src="{{url('')}}/frontend_assets/icon/top-right.svg" alt="" /> </a>
                                     <span class="stick">
                                         {{ $item->property_status }}
