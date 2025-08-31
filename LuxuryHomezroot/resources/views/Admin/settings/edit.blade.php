@@ -56,9 +56,9 @@
                                 {{-- Logo --}}
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label col-lg-2">Logo</label>
-                                    <div class="col-lg-1">
+                                    <div class="col-lg-1 mx-4">
                                         @if($setting->logo)
-                                            <img src="{{ asset('storage/app/public/' . $setting->logo) }}" style="max-width: 100px;">
+                                            <img src="{{ asset('storage/' . $setting->logo) }}" style="max-width: 100px;">
                                         @endif
                                     </div>
                                     <div class="col-lg-9">

@@ -64,6 +64,8 @@
                 Properties in <span class="text-gold-accent">@if(is_object($city)){{ $city->city_name }}@else{{ $city }}@endif</span>
             @elseif(request()->is('search-properties'))
                 Search Results
+            @elseif(isset($propertyType))
+                {{ ucfirst($propertyType) }} <span class="text-gold-accent">Properties</span>
             @else
                 All <span class="text-gold-accent">Properties</span>
             @endif
@@ -186,6 +188,8 @@
                     <p class="mt-2 text-gray-500 font-elegant">We’ll be adding new properties in @if(is_object($city)){{ $city->city_name }}@else{{ $city }}@endif soon. Please check back later.</p>
                  @elseif(request()->is('search-properties'))
                     <p class="mt-2 text-gray-500 font-elegant">Try refining your filters or selecting a different city/developer.</p>
+                 @elseif(isset($propertyType))
+                    <p class="mt-2 text-gray-500 font-elegant">We’ll be adding new {{ $propertyType }} properties soon. Please check back later.</p>
                  @else
                     <p class="mt-2 text-gray-500 font-elegant">Please try a different category or check back soon.</p>
                  @endif

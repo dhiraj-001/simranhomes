@@ -32,6 +32,9 @@ class ViewServiceProvider extends ServiceProvider
            
            // Share global settings with all views
         View::share('global_settings', Setting::first());
+
+        // Share all_states with all views
+       
         
         // ✅ Share active keyword sections with all views
     View::share('keyword_sections', KeywordSection::with(['keywords' => function($query) {

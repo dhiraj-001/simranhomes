@@ -444,17 +444,17 @@ class PropertyController extends Controller
         return redirect()->route('Admin.properties.index')->with('success', 'Property order updated successfully!');
     }
 
-    public function filterProperties($id)
+    public function filterProperties($propertyType)
     {
-        $newlaunchproperties = Property::where('property_type', 'new-launch')->get();
-        $residentialproperties = Property::where('property_type', 'residential')->get();
-        $commercialproperties = Property::where('property_type', 'commercial')->get();
-
-        $properties = Property::where('property_type', $id)
+        $properties = Property::where('property_type', $propertyType)
                               ->where('status', 1)
-                              ->get();
+                              ->paginate(12);
+        
+        $testimonials = Testimonial::paginate(15);
+        $banner = Banner::with('images')->where('page', 'property')->where('status', 1)->latest()->first();
+        $cities = City::all();
 
-        return view('Frontend.properties.filter', compact('newlaunchproperties', 'residentialproperties', 'commercialproperties','properties', 'id'));
+        return view('Frontend.properties.all', compact('properties', 'testimonials', 'banner', 'cities', 'propertyType'));
     }
 
     //All Properties

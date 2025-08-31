@@ -12,14 +12,14 @@
 
 
     <!-- preloader css -->
-    <link rel="stylesheet" href="{{url('')}}/admin_assets/css/preloader.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{ Vite::asset('admin_assets/css/preloader.min.css') }}" type="text/css" />
 
     <!-- Bootstrap Css -->
-    <link href="{{url('')}}/admin_assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="{{ Vite::asset('admin_assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="{{url('')}}/admin_assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ Vite::asset('admin_assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="{{url('')}}/admin_assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ Vite::asset('admin_assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -152,18 +152,18 @@
     <div class="rightbar-overlay"></div>
 
     <!-- JAVASCRIPT -->
-    <script src="{{url('')}}/admin_assets/libs/jquery/jquery.min.js"></script>
-    <script src="{{url('')}}/admin_assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="{{url('')}}/admin_assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="{{url('')}}/admin_assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="{{url('')}}/admin_assets/libs/node-waves/waves.min.js"></script>
-    <script src="{{url('')}}/admin_assets/libs/feather-icons/feather.min.js"></script>
+    <script src="{{ Vite::asset('admin_assets/libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ Vite::asset('admin_assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ Vite::asset('admin_assets/libs/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ Vite::asset('admin_assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ Vite::asset('admin_assets/libs/node-waves/waves.min.js') }}"></script>
+    <script src="{{ Vite::asset('admin_assets/libs/feather-icons/feather.min.js') }}"></script>
     <!-- pace js -->
-    <script src="{{url('')}}/admin_assets/libs/pace-js/pace.min.js"></script>
+    <script src="{{ Vite::asset('admin_assets/libs/pace-js/pace.min.js') }}"></script>
 
-    <script src="{{url('')}}/admin_assets/js/pages/pass-addon.init.js"></script>
+    <script src="{{ Vite::asset('admin_assets/js/pages/pass-addon.init.js') }}"></script>
 
-    <script src="{{url('')}}/admin_assets/js/pages/feather-icon.init.js"></script>
+    <script src="{{ Vite::asset('admin_assets/js/pages/feather-icon.init.js') }}"></script>
 
 </body>
 

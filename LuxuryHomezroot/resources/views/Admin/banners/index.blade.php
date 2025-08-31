@@ -67,10 +67,10 @@
                                             <td>{{ ucfirst($banner->type) }}</td>
                                             <td>
                                                 @if($banner->type == 'video')
-                                                    <video src="{{ asset('storage/app/public/' . $banner->video) }}" width="100" height="60" muted></video>
+                                                    <video src="{{ asset('storage/' . $banner->video) }}" width="100" height="60" muted></video>
                                                 @elseif($banner->type == 'image')
                                                     @if($banner->images->first())
-                                                        <img src="{{ asset('storage/app/public/' . $banner->images->first()->image) }}" class="avatar-sm">
+                                                        <img src="{{ asset('storage/' . $banner->images->first()->image) }}" class="avatar-sm">
                                                     @endif
                                                 @endif
                                             </td>

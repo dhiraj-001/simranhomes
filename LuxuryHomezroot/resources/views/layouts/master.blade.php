@@ -4,13 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title', 'Simran Homes')</title>
-    <meta name="keywords" content="@yield('keywords')" />
+    <meta name="keywords" content="@yield('keywords', 'Simran Homes, Luxury Real Estate, Exclusive Properties, Real Estate Projects, Top Developers, Property Locations, Buy Property, Real Estate Investment, Residential Projects, Commercial Properties, Real Estate India, Property Blogs, RERA registered properties')" />
     <meta name="description" content="@yield('description')" />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ Vite::asset('frontend_assets/images/fav_sec.png') }}" sizes="96x96" />
 
-    <!-- Swiper CSS for sliders -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css"
@@ -19,7 +17,6 @@
         referrerpolicy="no-referrer"
     />
 
-    <!-- Main App Styles and Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     <style>
@@ -45,6 +42,116 @@
             will-change: transform;
         }
         /* --- END OF CHANGES --- */
+
+        /* --- RERA SECTION STYLING --- */
+        .rera_wrapper {
+           
+            
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .rera_wrapper .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 0 auto;
+        }
+
+        .rera_wrapper .col {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            border-radius: 16px;
+            padding: 10px 15px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            cursor: default;
+        }
+
+        .rera_wrapper .col::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #D4AF37, #f4d373);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .rera_wrapper .col:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 3px 3px rgba(212, 175, 55, 0.5);
+            border-color: #D4AF37;
+        }
+
+        .rera_wrapper .col:hover::before {
+            transform: scaleX(1);
+        }
+
+        .rera_wrapper .col p {
+            margin: 0;
+            color: #f9f6f2;
+            font-size: 12px;
+            line-height: 1.8;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.7);
+        }
+
+        .rera_wrapper .col p::before {
+            content: '🏛️ ';
+            margin-right: 0.6rem;
+            color: #D4AF37;
+            text-shadow: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .rera_wrapper {
+                padding: 3rem 1.5rem;
+            }
+            
+            .rera_wrapper .grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .rera_wrapper .col {
+                padding: 1.5rem 1rem;
+            }
+            
+            .rera_wrapper .col p {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .rera_wrapper {
+                padding: 2rem 0rem;
+               
+            }
+            
+            .rera_wrapper .col {
+                padding: 1rem 0rem;
+
+            }
+            
+            .rera_wrapper .col p {
+                font-size: 0.6rem;
+                padding: 0 5px;
+            }
+            .scr-hide {
+                max-height: 300px !important;
+                width: 70vw !important;
+            }
+        }
 
         /* Custom style for the navbar link hover effect */
         .nav-link {
@@ -202,29 +309,102 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.6);
-            display: none; /* Initially hidden */
+            display: flex;
             align-items: center;
             justify-content: center;
             z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-out;
+        }
+       
+       .enquire-pop.active {
+           opacity: 1;
+           visibility: visible;
+       }
+       
+       .enquire-content {
+           opacity: 0;
+           transform: translateY(-20px) scale(0.95);
+           transition: all 0.3s ease-out;
+       }
+       
+        .enquire-pop.active .enquire-content {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
+        /* Enhanced Form Styles */
+        .enquire-content select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .enquire-content select:focus {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23D4AF37' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+        }
+
+        /* Improved checkbox styling */
+        .enquire-content input[type="checkbox"]:checked {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+            border-color: #D4AF37;
+            background-color: #D4AF37;
+        }
+
+        /* Enhanced focus states */
+        .enquire-content input:focus,
+        .enquire-content select:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+        }
+
+        /* Mobile responsiveness improvements */
+        @media (max-width: 640px) {
+            .enquire-content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .enquire-content h3 {
+                font-size: 1.5rem;
+            }
+            
+            .enquire-content .absolute.-top-12 {
+                top: -2rem;
+                width: 3rem;
+                height: 3rem;
+            }
+            
+            .enquire-content .absolute.-top-12 svg {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+        }
+
+        /* Loading state for submit button */
+        .enquire-content button[type="submit"]:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
     </style>
-    <!-- Allow individual pages to add their own styles -->
     @stack('styles')
 </head>
 <body class="bg-gray-100 font-sans text-gray-800 antialiased">
 
-    <!-- Header Section -->
     <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
         <nav class="container mx-auto px-10 py-4 flex md:justify-around items-center justify-between ">
-            <!-- Left Navigation -->
             <div class="hidden md:flex items-center space-x-7 ">
                 <a href="/" class="nav-link text-white text-lg font-display">Home</a>
                 <a href="/about-us" class="nav-link text-white text-lg font-display">About us</a>
                 <a href="/properties" class="nav-link text-white text-lg font-display">Projects</a>
             </div>
 
-            <!-- Logo -->
             <div class=" flex justify-center">
                 @if($global_settings && $global_settings->logo)
                     <a href="/">
@@ -233,14 +413,12 @@
                 @endif
             </div>
 
-            <!-- Right Navigation -->
             <div class="hidden md:flex items-center space-x-5 justify-endplay">
                 <a href="/developers" class="nav-link text-white text-lg font-display">Developers</a>
                 <a href="/locations" class="nav-link text-white text-lg font-display">Locations</a>
                 <a href="/blogs" class="nav-link text-white text-lg font-display">Blogs</a>
             </div>
             
-            <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-white focus:outline-none">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -249,7 +427,6 @@
         </nav>
     </header>
 
-    <!-- Mobile Menu -->
     <div id="mobile-menu" class="fixed top-0 right-0 h-full w-full max-w-xs z-50 transform translate-x-full md:hidden">
         <div class="p-6">
             <div class="flex justify-between items-center mb-8">
@@ -272,17 +449,13 @@
         </div>
     </div>
 
-    <!-- Main Content Area -->
     <main>
         @yield('content')
     </main>
 
-    <!-- Enhanced Footer Section -->
     <footer class="bg-gradient-to-b from-navy to-black text-white pt-20 pb-12 px-12">
         <div class="container mx-auto px-6">
-            <!-- Footer Top Section with Enhanced Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
-                <!-- Enhanced About Section -->
                 <div class="lg:col-span-1">
                     @if($global_settings && $global_settings->logo)
                         <a href="/" class="mb-6 inline-block transform hover:scale-105 transition-transform duration-300">
@@ -291,7 +464,6 @@
                     @endif
                     <p class="text-gray-300 text-sm leading-relaxed mb-6">{!! $global_settings->footer_about !!}</p>
                     
-                    <!-- Enhanced Social Icons with Hover Effects -->
                     <div class="flex space-x-3">
                         <a href="{{ $global_settings->social_facebook }}" title="Facebook" class="group relative">
                             <div class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transform transition-all duration-300 group-hover:bg-blue-600 group-hover:scale-110">
@@ -316,7 +488,6 @@
                     </div>
                 </div>
 
-                <!-- Enhanced Useful Links with Icons -->
                 <div>
                     <h5 class="font-display text-xl font-bold mb-6 text-golden relative">
                         Useful Links
@@ -331,7 +502,6 @@
                     </ul>
                 </div>
 
-                <!-- Enhanced More Links -->
                 <div>
                     <h5 class="font-display text-xl font-bold mb-6 text-golden relative">
                         Quick Access
@@ -345,7 +515,6 @@
                     </ul>
                 </div>
 
-                <!-- Enhanced Contact Section -->
                 <div>
                     <h5 class="font-display text-xl font-bold mb-6 text-golden relative">
                         Get In Touch
@@ -371,8 +540,8 @@
                             <a href="tel:{{ $global_settings->contact_number }}" class="text-gray-300 hover:text-golden transition-colors duration-300">{{ $global_settings->contact_number }}</a>
                         </li>
                     </ul>
+
                     
-                    <!-- Newsletter Signup -->
                     <div class="mt-6">
                         <h6 class="text-sm font-semibold text-white mb-3">Stay Updated</h6>
                         <form class="flex">
@@ -384,8 +553,57 @@
                     </div>
                 </div>
             </div>
+            <div class="mt-12 pt-8 border-t border-gray-800">
+                @foreach($keyword_sections as $section)
+                    @if($section->keywords->count())
+                        <div class="keyword-section mb-8" data-animate="fade-up">
+                            <h5 class="font-display text-xl font-bold mb-6 text-golden relative">
+                                {{ $section->title }}
+                                <span class="absolute -bottom-2 left-0 w-12 h-0.5 bg-golden"></span>
+                            </h5>
+                            <div class="scroll-wrapper scr-hide overflow-x-auto pb-4">
+                                <ul class="keyword-list flex flex-wrap gap-3 min-w-max">
+                                    @foreach($section->keywords as $keyword)
+                                        <li class="flex-shrink-0">
+                                            <a href="{{ url('/keywords/' . $keyword->slug) }}" target="_blank" rel="noopener noreferrer" 
+                                               class="inline-flex items-center px-4 py-2 bg-gray-800 text-gray-300 rounded-full text-sm font-medium transition-all duration-300 
+                                                      hover:bg-golden hover:text-navy hover:scale-105 hover:shadow-lg group">
+                                                <span class="mr-2 text-golden group-hover:text-navy transition-colors">#</span>
+                                                {{ $keyword->text }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+                                    @php
+$all_states = [
+    'andhra_pradesh', 'arunachal_pradesh', 'assam', 'bihar', 'chhattisgarh', 'goa', 'gujarat', 'haryana',
+    'himachal_pradesh', 'jharkhand', 'karnataka', 'kerala', 'madhya_pradesh', 'maharashtra', 'manipur',
+    'meghalaya', 'mizoram', 'nagaland', 'odisha', 'punjab', 'rajasthan', 'sikkim', 'tamil_nadu',
+    'telangana', 'tripura', 'uttar_pradesh', 'uttarakhand', 'west_bengal',
+    'andaman_and_nicobar_islands', 'chandigarh', 'dadra_and_nagar_haveli_and_daman_and_diu', 'delhi',
+    'jammu_and_kashmir', 'ladakh', 'lakshadweep', 'puducherry'
+];
+@endphp
+            <div class="rera_wrapper">
+    <div class="grid">
+        @foreach($all_states as $state)
+            @php
+                $value = $global_settings->{'rera_' . $state} ?? null;
+            @endphp
 
-            <!-- Enhanced Footer Bottom Section -->
+            @if(!empty($value))
+                <div class="col">
+                    <p>{{ ucwords(str_replace('_', ' ', $state)) }} RERA - {{ $value }}</p>
+                </div>
+            @endif
+        @endforeach
+    </div>
+        </div>
             <div class="border-t border-gray-800 pt-8 mt-12">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                     <div class="text-center md:text-left">
@@ -399,68 +617,163 @@
                     </div>
                 </div>
             </div>
+           
         </div>
     </footer>
 
-    <!-- Floating Action Buttons -->
-    <div class="footer-links">
-        <a href="javascript:;" data-model-trigger=".enquire-pop" title="Enquire Now">
-            <img src="{{ Vite::asset('frontend_assets/icon/formicon.svg') }}" width="20" height="auto" alt="Enquire Now" />
-        </a>
-        <a href="tel:{{ $global_settings->contact_number }}" title="Call Us">
-            <img src="{{ Vite::asset('frontend_assets/icon/icons8-call.gif') }}" width="30" height="auto" alt="Call Us" />
-        </a>
-        <a href="https://wa.me/{{ $global_settings->social_whatsapp }}" target="_blank" title="WhatsApp">
-            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.847 6.062l-1.011 3.697 3.717-1.005z"/></svg>
-        </a>
-    </div>
-
-    <!-- Enquire Now Pop-up Modal -->
-    <div class="model enquire-pop">
-        <div class="model-body">
-            <button class="close">
-                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 0.5L25.5 25.5M0.5 25.5L25.5 0.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    <div class="enquire-pop">
+        <div class="enquire-content bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-2xl w-full max-w-md relative mx-4 border border-golden/20">
+            <!-- Close Button -->
+            <button type="button" class="close absolute top-6 right-6 text-gray-500 hover:text-golden transition-colors duration-300 z-10">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
             </button>
-            <div class="text-center mb-6">
-                <img src="{{ Vite::asset('frontend_assets/images/main_logo.png') }}" alt="Logo" class="h-12 mx-auto" />
-                <h4 class="text-2xl font-display font-bold text-navy mt-4">Get Detailed Information</h4>
-                <p class="text-gray-600 font-elegant">Connect with our Sales Specialist</p>
+            
+            <!-- Header Section -->
+            <div class="text-center mb-8 relative">
+                
+                <h3 class="text-3xl font-display font-bold text-navy-dark mt-12 mb-2">Connect With Us</h3>
+                <p class="text-gray-600 text-sm">Get personalized assistance from our luxury real estate specialists</p>
             </div>
-            <form class="form form-grid space-y-4" action="{{ route('enquiry.store') }}" method="post">
+
+            <!-- Form Section -->
+            <form action="{{ route('enquiry.store') }}" method="POST" class="space-y-8" id="enquiry-form">
                 @csrf
                 <input type="hidden" name="type" value="general">
                 <input type="hidden" name="page_url" value="{{ url()->current() }}">
                 
-                <input type="text" class="w-full p-3 border rounded-md focus:ring-golden focus:border-golden" name="name" placeholder="Name*" required/>
-                
-                <div class="flex">
-                    <select class="border rounded-l-md p-3 bg-gray-100" name="countryCode" required>
-                        <option value="+91" selected>+91</option>
-                        <option value="+1">+1</option>
-                        <option value="+44">+44</option>
-                    </select>
-                    <input type="tel" placeholder="Phone Number*" name="mobile" class="w-full p-3 border rounded-r-md focus:ring-golden focus:border-golden" required/>
+                <!-- Name Field -->
+                <div class="relative group">
+                    <input type="text" id="enquiry-name" name="name" 
+                           class="peer px-3 rounded-md h-14 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-golden bg-transparent transition-all duration-300"
+                           placeholder=" " required 
+                           aria-label="Full Name" />
+                    <label for="enquiry-name" class="absolute left-1 -top-3.5 text-gray-600 text-sm transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-golden peer-focus:text-sm">
+                        Full Name *
+                    </label>
+                    <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-golden transition-all duration-300 peer-focus:w-full group-hover:w-full"></div>
                 </div>
 
-                <input type="email" name="email" class="w-full p-3 border rounded-md focus:ring-golden focus:border-golden" placeholder="Email*" required/>
-
-                <div class="flex items-start">
-                    <input type="checkbox" name="checkbox" value="check" id="agree" checked required class="mt-1"/>
-                    <label for="agree" class="ml-2 text-sm text-gray-600"> I accept the <a href="/terms-condition" class="text-navy hover:underline"> Terms & Conditions</a>.</label>
+                <!-- Email Field -->
+                <div class="relative group">
+                    <input type="email" id="enquiry-email" name="email" 
+                           class="peer px-3 h-14 rounded-md w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-golden bg-transparent transition-all duration-300 "
+                           placeholder=" " required 
+                           aria-label="Email Address" />
+                    <label for="enquiry-email" class="absolute left-1 -top-3.5 text-gray-600 text-sm transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-golden peer-focus:text-sm">
+                        Email Address *
+                    </label>
+                    <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-golden transition-all duration-300 peer-focus:w-full group-hover:w-full"></div>
                 </div>
 
-                <button type="submit" class="w-full bg-navy text-white font-bold py-3 rounded-md hover:bg-golden hover:text-navy transition-colors duration-300 font-display">Submit</button>
+                <!-- Phone Field -->
+                <div class="relative">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-4 sm:space-y-0">
+                        <!-- Country Code Dropdown -->
+                        <div class="relative group flex-1 sm:flex-none sm:w-32 rounded-md">
+                            <select name="countryCode" 
+                                    class="w-full rounded-md h-14 border-b-2 border-gray-300 bg-transparent text-gray-900 focus:outline-none focus:border-golden transition-all duration-300 appearance-none cursor-pointer pl-1 pr-8 peer"
+                                    required
+                                    aria-label="Country Code">
+                                <option value="+91" selected>+91 (India)</option>
+                                <option value="+1">+1 (USA)</option>
+                                <option value="+44">+44 (UK)</option>
+                                <option value="+61">+61 (Australia)</option>
+                                <option value="+971">+971 (UAE)</option>
+                                <option value="+49">+49 (Germany)</option>
+                                <option value="+33">+33 (France)</option>
+                                <option value="+81">+81 (Japan)</option>
+                                <option value="+86">+86 (China)</option>
+                            </select>
+                           
+                            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-golden transition-all duration-300 peer-focus:w-full group-hover:w-full"></div>
+                        </div>
+                        
+                        <!-- Phone Number Input -->
+                        <div class="relative group flex-1 ">
+                            <input type="tel" id="enquiry-phone" name="mobile" 
+                                   class="peer px-3 rounded-md h-14 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-golden bg-transparent transition-all duration-300"
+                                   placeholder=" " required 
+                                   aria-label="Phone Number" />
+                            <label for="enquiry-phone" class="absolute left-1 -top-3.5 text-gray-600 text-sm transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-golden peer-focus:text-sm">
+                                Phone Number *
+                            </label>
+                            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-golden transition-all duration-300 peer-focus:w-full group-hover:w-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms Checkbox -->
+                <div class="flex items-start space-x-4 pt-6">
+                    <div class="flex items-center h-5 mt-0.5">
+                        <input type="checkbox" name="terms" id="enquiry-terms" 
+                               class="h-5 w-5 text-golden border-gray-300 rounded focus:ring-2 focus:ring-golden focus:ring-offset-2 checked:bg-golden transition-all duration-200" 
+                               checked required 
+                               aria-label="Accept Terms and Conditions" />
+                    </div>
+                    <label for="enquiry-terms" class="text-sm text-gray-700 leading-relaxed flex-1">
+                        I accept the <a href="/terms-condition" class="text-golden hover:text-navy-dark underline transition-colors duration-300 font-medium">Terms & Conditions</a> and agree to receive email notifications.
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-8">
+                    <button type="submit" 
+                            class="w-full bg-gradient-to-r from-navy to-gray-800 hover:from-golden hover:to-yellow-500 text-white hover:text-navy font-bold py-4 px-8 rounded-full focus:outline-none focus:ring-4 focus:ring-golden/30 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl active:scale-95"
+                            aria-label="Submit Enquiry">
+                        <span class="flex items-center justify-center space-x-3">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span class="text-lg">Submit Enquiry</span>
+                        </span>
+                    </button>
+                </div>
             </form>
+
+            <!-- Success Message (Hidden by default) -->
+            <div id="enquiry-success" class="hidden text-center py-8">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h4 class="text-xl font-bold text-green-800 mb-2">Thank You!</h4>
+                <p class="text-green-600">Your enquiry has been submitted successfully. Our specialist will contact you shortly.</p>
+            </div>
         </div>
     </div>
-     <button id="back-to-top" class="fixed bottom-20 right-5 z-40 w-12 h-12 bg-golden text-navy rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:bg-yellow-500 hover:-translate-y-1">
+
+    <ul class="footer-links">
+        <li data-model=".enquire-pop">
+            <a href="javascript:;" title="Enquire Now">
+                <img src="{{ Vite::asset('frontend_assets/icon/formicon.svg') }}" width="20" height="auto" alt="Enquire Now" />
+            </a>
+        </li>
+        <li>
+            <a href="tel:{{ $global_settings->contact_number }}" title="Call Us">
+                <img src="{{ Vite::asset('frontend_assets/icon/icons8-call.gif') }}" width="30" height="auto" alt="Call Us" />
+            </a>
+        </li>
+        <li>
+            <a href="https://wa.me/{{ $global_settings->social_whatsapp }}" target="_blank" title="WhatsApp">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.847 6.062l-1.011 3.697 3.717-1.005z"/></svg>
+            </a>
+        </li>
+    </ul>
+
+   
+     <button id="back-to-top" class="fixed bottom-20 left-5 z-40 w-12 h-12 bg-golden text-navy rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:bg-yellow-500 hover:-translate-y-1">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
     </button>
 
-    <!-- Scripts -->
+    
+</div>
+
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        xintegrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
     ></script>
@@ -472,26 +785,26 @@
     ></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        $(document).ready(function () {
             // --- START OF CHANGES: Optimized Navbar scroll effect ---
-            const header = document.getElementById('main-header');
-            const logo = document.getElementById('main-logo');
+            const header = $('#main-header');
+            const logo = $('#main-logo');
 
             // This function checks the scroll position and applies header changes only when needed,
             // preventing the code from running on every single pixel of scroll, which is more performant.
             const handleHeaderState = () => {
-                const isScrolled = window.scrollY > 50;
+                const isScrolled = $(window).scrollTop() > 50;
                 // Using a data attribute to track state is a clean way to avoid global variables.
-                const isShrunk = header.dataset.shrunk === 'true';
+                const isShrunk = header.data('shrunk') === true;
 
                 if (isScrolled && !isShrunk) {
-                    header.classList.add('glass-effect', 'shadow-lg');
-                    logo.classList.replace('h-20', 'h-16');
-                    header.dataset.shrunk = 'true';
+                    header.addClass('glass-effect shadow-lg');
+                    logo.removeClass('h-20').addClass('h-16');
+                    header.data('shrunk', true);
                 } else if (!isScrolled && isShrunk) {
-                    header.classList.remove('glass-effect', 'shadow-lg');
-                    logo.classList.replace('h-16', 'h-20');
-                    header.dataset.shrunk = 'false';
+                    header.removeClass('glass-effect shadow-lg');
+                    logo.removeClass('h-16').addClass('h-20');
+                    header.data('shrunk', false);
                 }
             };
 
@@ -499,48 +812,65 @@
             handleHeaderState();
 
             // Attach the optimized handler to the scroll event.
-            // { passive: true } tells the browser this listener won't prevent scrolling, further improving performance.
-            window.addEventListener('scroll', handleHeaderState, { passive: true });
+            $(window).on('scroll', handleHeaderState);
             // --- END OF CHANGES ---
 
 
             // Mobile Menu Toggle
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const closeMenuButton = document.getElementById('close-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.remove('translate-x-full');
+            $('#mobile-menu-button').on('click', function() {
+                $('#mobile-menu').removeClass('translate-x-full');
             });
 
-            closeMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.add('translate-x-full');
+            $('#close-menu-button').on('click', function() {
+                $('#mobile-menu').addClass('translate-x-full');
             });
 
             // Enquire Modal Toggle
-            const modalTriggers = document.querySelectorAll('[data-model-trigger]');
-            const modal = document.querySelector('.enquire-pop');
-            const closeModalButton = modal.querySelector('.close');
+            $('[data-model]').on('click', function(e) {
+                e.preventDefault();
+                var modalSelector = $(this).data('model');
+                $(modalSelector).addClass('active');
+            });
 
-            modalTriggers.forEach(trigger => {
-                trigger.addEventListener('click', () => {
-                    modal.classList.add('active');
+            // AJAX Form Submission
+            $('#enquiry-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                var form = $(this);
+                var url = form.attr('action');
+                
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: form.serialize(), // serializes the form's elements.
+                    success: function(data) {
+                        // On success, hide the form and show the success message
+                        form.hide();
+                        $('#enquiry-success').removeClass('hidden');
+                    },
+                    error: function(data) {
+                        // Handle errors here, e.g., show an error message
+                        alert('An error occurred. Please try again.');
+                    }
                 });
             });
 
-            closeModalButton.addEventListener('click', () => {
-                modal.classList.remove('active');
-            });
-
-            modal.addEventListener('click', function(event) {
-                if (event.target === this) {
-                    modal.classList.remove('active');
+            $('.enquire-pop').on('click', function(e) {
+                // If the click is on the close button (or its children) or the backdrop itself
+                if ($(e.target).is('.close, .close *, .enquire-pop')) {
+                    e.preventDefault();
+                    $(this).removeClass('active');
+                    
+                    // After a delay to allow the closing animation to finish
+                    setTimeout(function() {
+                        $('#enquiry-form').show().trigger('reset');
+                        $('#enquiry-success').addClass('hidden');
+                    }, 500);
                 }
             });
         });
     </script>
 
-    <!-- Allow individual pages to add their own scripts -->
     @stack('scripts')
 </body>
 </html>

@@ -208,15 +208,15 @@
         </h2>
         <p class="text-gray-600 max-w-2xl mx-auto mb-12 font-elegant">{!! $global_settings->home_sec2_paragraph !!}</p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-            @foreach ($subtypes->take(3) as $subtype)
+            @foreach ($propertyTypes->take(3) as $propertyType)
             <div class="group relative rounded-2xl overflow-hidden transition-transform duration-300" data-animate="fade-up" data-animate-delay="{{ $loop->index * 100 }}">
-                <a href="{{ route('property.by.subtype', $subtype->slug) }}" class="block">
+                <a href="{{ route('property.by.type', $propertyType->slug) }}" class="block">
                     <div class="relative property-card-overlay overflow-hidden rounded-2xl">
-                        <img src="{{ asset('uploads/psubtypes/' . $subtype->main_image) }}" alt="{{ $subtype->psubtype_name }}" class="w-full {{ $loop->iteration == 2 ? 'h-[28rem]' : 'h-96' }} object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <img src="{{ asset('uploads/propertytypes' . $propertyType->main_image) }}" alt="{{ $propertyType->name }}" class="w-full {{ $loop->iteration == 2 ? 'h-[28rem]' : 'h-96' }} object-cover group-hover:scale-105 transition-transform duration-300" />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                     </div>
                     <div class="absolute bottom-0 left-0 p-8 z-20">
-                        <h3 class="font-display text-3xl text-white font-bold transition-colors duration-300 group-hover:text-golden">{{ $subtype->psubtype_name }}</h3>
+                        <h3 class="font-display text-3xl text-white font-bold transition-colors duration-300 group-hover:text-golden">{{ $propertyType->name }}</h3>
                     </div>
                 </a>
             </div>
@@ -285,9 +285,7 @@
                 </div>
                 <div class="propdots swiper-pagination"></div>
             </div>
-            <!-- Navigation Arrows -->
-            <div class="swiper-button-prev pro-prev"></div>
-            <div class="swiper-button-next pro-next"></div>
+           
         </div>
     </div>
 </section>
@@ -587,7 +585,7 @@
             @if($blogs->count() > 0)
                 @php $featuredBlog = $blogs->first(); @endphp
                 <!-- Featured Blog Post -->
-                <div class="lg:col-span-2 group relative bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl" data-animate="fade-up">
+                <div class="lg:col-span-1 group relative bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl" data-animate="fade-up">
                     <a href="{{ url('blog/' . $featuredBlog->slug) }}" class="block">
                         <img src="{{ asset('storage/' . $featuredBlog->main_image) }}" alt="{{ $featuredBlog->heading }}" class="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-105" />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
@@ -602,10 +600,11 @@
                     @foreach($blogs->skip(1)->take(2) as $blog)
                     <div class="group relative bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl" data-animate="fade-up" data-animate-delay="{{ $loop->index * 150 }}">
                         <a href="{{ url('blog/' . $blog->slug) }}" class="block">
-                            <img src="{{ asset('storage/' . $blog->main_image) }}" alt="{{ $blog->heading }}" class="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-105" />
-                             <div class="p-6">
-                                <p class="text-xs text-gray-500 mb-2">{{ $blog->created_at->format('d M, Y') }}</p>
-                                <h3 class="font-display text-lg text-navy font-bold line-clamp-2 group-hover:text-golden transition-colors">{{ $blog->heading }}</h3>
+                            <img src="{{ asset('storage/' . $blog->main_image) }}" alt="{{ $blog->heading }}" class="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-105" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 p-8 text-white">
+                                <p class="text-sm mb-2">{{ $blog->created_at->format('d M, Y') }}</p>
+                                <h3 class="font-display text-3xl font-bold line-clamp-2">{{ $blog->heading }}</h3>
                             </div>
                         </a>
                     </div>

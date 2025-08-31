@@ -442,8 +442,8 @@ CREATE TABLE `keywords` (
 INSERT INTO `keywords` (`id`, `keyword_section_id`, `text`, `content`, `slug`, `status`, `created_at`, `updated_at`) VALUES
 (32, 7, 'Top Real Esate i Gurgoan', '<b>About Max Estate 36A</b>\r\nMax Estate Sector 36A Luxury Flats on Dwarka Expressway Gurgaon offers a luxurious and modern lifestyle in the heart of the city. These meticulously designed apartments provide a perfect blend of comfort, convenience, and style.\r\nKey Features:\r\n•	Prime Location: Strategically located in Sector 36A, Gurgaon, Max Estate offers easy access to major highways, schools, hospitals, and shopping centers.\r\n•	Spacious Apartments: The apartments are designed to provide ample living space, ensuring comfort and privacy.\r\n•	Modern Amenities: Residents can enjoy a wide range of amenities, including a clubhouse, swimming pool, gym, landscaped gardens, and a children\'s play area.\r\n•	High-Quality Construction: The apartments are built using the latest construction techniques and high-quality materials, ensuring durability and longevity.\r\n•	Investment Opportunity: Max Estate Sector 36A is a great investment opportunity, offering a combination of luxurious living and potential appreciation in property value.\r\nWhy Choose Max Estate Sector 36A Luxury Flats?\r\n•	Convenient Location: Enjoy the benefits of living in a prime location with easy access to everything you need.\r\n•	Modern Lifestyle: Experience the comfort and convenience of modern living with spacious apartments and state-of-the-art amenities.\r\n•	Investment Potential: Benefit from the increasing property values in Gurgaon and the surrounding areas.\r\n•	Reputed Developer: Max Estate is a renowned developer with a proven track record of delivering quality projects.\r\nExperience the epitome of luxury living at Max Estate Sector 36A Luxury Flats on Dwarka Expressway Gurgaon.', 'top-real-esate-i-gurgoan', 1, '2025-07-01 10:33:48', '2025-07-06 09:58:23'),
 (33, 7, 'Top Real Esate in Noida', NULL, 'top-real-esate-in-noida', 1, '2025-07-01 10:33:48', '2025-07-01 10:33:48'),
-(34, 7, 'Top Real || Esate in Delhi', NULL, 'top-real-esate-in-delhi', 1, '2025-07-01 10:33:48', '2025-07-04 18:48:16'),
-(35, 8, 'Testing In || Noida', 'Testing Testing In || Noida', 'testing-in-noida', 1, '2025-07-05 00:27:25', '2025-07-05 00:37:32');
+(34, 7, 'Top Real Esate in Delhi', NULL, 'top-real-esate-in-delhi', 1, '2025-07-01 10:33:48', '2025-07-04 18:48:16'),
+(35, 8, 'Testing In Noida', 'Testing Testing In Noida', 'testing-in-noida', 1, '2025-07-05 00:27:25', '2025-07-05 00:37:32');
 
 -- --------------------------------------------------------
 
@@ -615,6 +615,7 @@ CREATE TABLE `properties` (
   `slug` varchar(255) NOT NULL,
   `property_type` varchar(500) DEFAULT NULL,
   `property_sub_type` varchar(255) DEFAULT NULL,
+  `sub_property` varchar(255) DEFAULT NULL,
   `property_status` varchar(500) DEFAULT NULL,
   `main_image` varchar(500) DEFAULT NULL,
   `banner_image` varchar(500) DEFAULT NULL,

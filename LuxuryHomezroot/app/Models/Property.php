@@ -25,6 +25,7 @@ class Property extends Model
         'breadcrumbs_image',
         'map',
         'property_sub_type',
+        'sub_property',
         'schema_seo',
         'is_trending_project',
         'property_city_wise',

@@ -1,9 +1,9 @@
-@extends('layouts.master') 
-@section('title', $property-> heading) 
-@section('keywords', $property-> meta_keywords) 
-@section('description',$property-> meta_description) 
+@extends('layouts.master')
+@section('title', $property->heading)
+@section('keywords', $property->meta_keywords)
+@section('description', $property->meta_description)
 
-@section('content') 
+@section('content')
 
 @push('styles')
 {{-- Using your original import style --}}
@@ -13,7 +13,9 @@
 <link rel="stylesheet" href="{{url('')}}/frontend_assets/css/aresponsive.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5/dist/fancybox/fancybox.css"/>
 {{-- Alpine.js is used for interactive elements like tabs and accordions --}}
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+{{-- Swiper CSS (Important for navigation arrows) --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <style>
     /* Custom styles for the new design */
     .prose h5, .prose h6 {
@@ -25,26 +27,21 @@
     .fancybox__slide {
         padding: 8px;
     }
+    /* NOTE: The problematic ".swiper-slide { width: auto !important; }" rule has been removed. */
 </style>
 @endpush
 
-<!-- =================================================================================== -->
-<!-- START: HERO SECTION (REDESIGNED)                                                  -->
-<!-- =================================================================================== -->
 <section class="relative h-[80vh] min-h-[600px] bg-navy-dark text-white">
-    <!-- Background Image -->
     <div class="absolute inset-0 z-0">
         <img src="{{ asset('storage/' . $property->banner_image) }}" alt="{{ $property->heading }}" class="w-full h-full object-cover" />
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
     </div>
 
-    <!-- Content -->
     <div class="relative z-10 container mx-auto px-6 h-full flex flex-col justify-end pb-20">
         <div class="max-w-4xl">
             <h1 class="font-display text-5xl md:text-7xl font-bold leading-tight">{{ $property->heading }}</h1>
             <p class="font-elegant text-xl text-gray-300 mt-2">{{ $property->location }}</p>
             
-            <!-- Key Specs -->
             <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-white/20 pt-6">
                 <div>
                     <span class=" text-gray-300 text-lg font-elegant">Starting Price</span>
@@ -66,21 +63,11 @@
         </div>
     </div>
 </section>
-<!-- =================================================================================== -->
-<!-- END: HERO SECTION                                                                 -->
-<!-- =================================================================================== -->
-
-
-<!-- =================================================================================== -->
-<!-- START: MAIN CONTENT SECTION (REDESIGNED)                                          -->
-<!-- =================================================================================== -->
 <section class="bg-white py-20 sm:py-28">
     <div class="container mx-auto px-6">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
 
-            <!-- Main Content (Left Column) -->
             <div class="lg:col-span-8">
-                <!-- About Section -->
                 <div class="mb-16" id="about-us" data-animate="fade-up">
                     <h2 class="font-display text-4xl text-navy-dark font-bold mb-6">{{ $property->about_heading }}</h2>
                     <div class="prose max-w-none font-elegant text-gray-700">
@@ -88,10 +75,6 @@
                     </div>
                 </div>
 
-                <!-- Highlights Section -->
-               
-
-                <!-- Amenities Section -->
                 <div class="mb-16" id="amenities" data-animate="fade-up">
                     <h2 class="font-display text-4xl text-navy-dark font-bold mb-6">{{ $property-> heading }} <span>Amenities</span></h2>
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
@@ -104,7 +87,6 @@
                     </div>
                 </div>
 
-                <!-- Pricing Section -->
                 <div class="mb-16" id="price" data-animate="fade-up">
                     <h2 class="font-display text-4xl text-navy-dark font-bold mb-6">{{ $property-> heading }} <span>Price List</span></h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -120,15 +102,14 @@
                     </div>
                 </div>
 
-                <!-- Floor Plans Section -->
                 @if ($property->floorPlans->count())
                 <div class="mb-16" id="floor-plans" x-data="{ activeTab: 'tab0' }" data-animate="fade-up">
                     <h2 class="font-display text-4xl text-navy-dark font-bold mb-6">Floor Plans</h2>
-                    <div class="flex border-b mb-6">
+                    <div class="flex border-b mb-6 overflow-x-auto">
                         @foreach ($property->floorPlans as $index => $plan)
-                        <button @click="activeTab = 'tab{{ $index }}'" 
+                        <button @click="activeTab = 'tab{{ $index }}'"
                                 :class="{ 'border-gold-accent text-navy-dark': activeTab === 'tab{{ $index }}', 'border-transparent text-gray-500': activeTab !== 'tab{{ $index }}' }"
-                                class="px-6 py-3 font-display font-bold border-b-2 transition-colors">
+                                class="px-6 py-3 font-display font-bold border-b-2 transition-colors whitespace-nowrap">
                             {{ $plan->type }}
                         </button>
                         @endforeach
@@ -143,7 +124,6 @@
                 </div>
                 @endif
 
-                <!-- Gallery Section -->
                 <div class="mb-16" id="gallery" data-animate="fade-up">
                     <h2 class="font-display text-4xl text-navy-dark font-bold mb-6">Gallery</h2>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -155,16 +135,15 @@
                     </div>
                 </div>
 
-                <!-- Location Advantage Section -->
                 @php $advantages = $property->locationAdvantages->groupBy('type'); @endphp
                 @if($property->locationAdvantages->count())
                 <div class="mb-16" id="location" x-data="{ activeTab: '{{ Str::slug(array_key_first($advantages->toArray())) }}' }" data-animate="fade-up">
                     <h2 class="font-display text-4xl text-navy-dark font-bold mb-6">Location Advantage</h2>
-                     <div class="flex border-b mb-6">
+                     <div class="flex border-b mb-6 overflow-x-auto">
                         @foreach ($advantages as $type => $items)
-                        <button @click="activeTab = '{{ Str::slug($type) }}'" 
+                        <button @click="activeTab = '{{ Str::slug($type) }}'"
                                 :class="{ 'border-gold-accent text-navy-dark': activeTab === '{{ Str::slug($type) }}', 'border-transparent text-gray-500': activeTab !== '{{ Str::slug($type) }}' }"
-                                class="px-6 py-3 font-display font-bold border-b-2 transition-colors capitalize">
+                                class="px-6 py-3 font-display font-bold border-b-2 transition-colors capitalize whitespace-nowrap">
                             {{ $type }}
                         </button>
                         @endforeach
@@ -182,7 +161,6 @@
                 </div>
                 @endif
 
-                <!-- FAQ Section -->
                 <div id="faq" data-animate="fade-up">
                     <h2 class="font-display text-4xl text-navy-dark font-bold mb-6">Frequently Asked Questions</h2>
                     <div class="space-y-4">
@@ -192,7 +170,7 @@
                                 <h5 class="font-display font-bold text-navy-dark">{{ $faq->question }}</h5>
                                 <svg class="w-5 h-5 text-gold-accent transition-transform duration-300" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </button>
-                            <div x-show="open" x-transition class="px-6 pb-6 font-elegant text-gray-600 text-sm">
+                            <div x-show="open" x-collapse class="px-6 pb-6 font-elegant text-gray-600 text-sm">
                                 <p>{{ $faq->answer }}</p>
                             </div>
                         </div>
@@ -202,21 +180,20 @@
 
             </div>
 
-            <!-- Sidebar (Right Column) -->
             <div class="lg:col-span-4">
                 <div class="sticky sticky-sidebar">
-                    <div class="bg-navy-dark text-white rounded-2xl p-8" data-animate="fade-up">
-                        <h3 class="font-display text-navy text-2xl font-bold mb-4">Get In Touch!</h3>
+                    <div class="bg-gray-100 text-navy rounded-2xl p-8" data-animate="fade-up">
+                        <h3 class="font-display text-2xl font-bold mb-4 text-navy">Get In Touch!</h3>
                         <form class="space-y-4" action="{{ route('enquiry.store') }}" method="post">
                             @csrf
                             <input type="hidden" name="type" value="property">
                             <input type="hidden" name="property_name" value="{{ $property->heading }}">
                             <input type="hidden" name="page_url" value="{{ url()->current() }}">
-                            <input type="text" placeholder="Your Name" name="name" required class="w-full bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0" />
-                            <input type="email" name="email" placeholder="Your Email" required class="w-full bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0" />
-                            <input type="text" name="mobile" placeholder="Mobile Number" required class="w-full bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0" />
-                            <textarea name="message" placeholder="Your Message" rows="4" class="w-full bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0"></textarea>
-                            <button type="submit" class="w-full bg-gold-accent bg-navy font-bold py-3 rounded-md hover:bg-navy/80 transition-colors duration-300 font-display">Submit Enquiry</button>
+                            <input type="text" placeholder="Your Name" name="name" required class="w-full bg-white/10 p-3 border-blue-400 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0" />
+                            <input type="email" name="email" placeholder="Your Email" required class="w-full bg-white/10 p-3 border-blue-400 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0" />
+                            <input type="text" name="mobile" placeholder="Mobile Number" required class="w-full bg-white/10 p-3 border-blue-400 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0" />
+                            <textarea name="message" placeholder="Your Message" rows="4" class="w-full bg-white/10 p-3 border-blue-400 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent border-0"></textarea>
+                            <button type="submit" class="w-full bg-navy text-white hover:bg-golden font-bold py-3 rounded-md hover:bg-gold-accent/80 transition-colors duration-300 font-display">Submit Enquiry</button>
                         </form>
                     </div>
                      <div class="text-center mt-6" data-animate="fade-up">
@@ -230,106 +207,111 @@
         </div>
     </div>
 </section>
-<!-- =================================================================================== -->
-<!-- END: MAIN CONTENT SECTION                                                         -->
-<!-- =================================================================================== -->
 
-
-<!-- =================================================================================== -->
-<!-- START: TRENDING PROJECTS SECTION                                                  -->
-<!-- =================================================================================== -->
-@if(isset($trendingProperties) && $trendingProperties->count() > 0)
+@if($trendingProperties->count() > 0)
 <section class="bg-gray-50 py-20 sm:py-28">
-    <div class="container mx-auto px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="font-display text-4xl text-navy-dark font-bold">Trending <span class="text-gold-accent">Projects</span></h2>
-                <p class="text-gray-600 max-w-2xl mx-auto font-elegant mt-2">Browse our most sought-after listings loved by clients and investors alike.</p>
-            </div>
-            <div class="swiper prolisting_slider">
-                <div class="swiper-wrapper pb-16">
+    <div class="container mx-auto px-6 max-w-7xl">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-4xl text-navy-dark font-bold">Trending <span class="text-gold-accent">Projects</span></h2>
+            <p class="text-gray-600 max-w-2xl mx-auto font-elegant mt-2">Browse our most sought-after listings loved by clients and investors alike.</p>
+        </div>
+
+        @php $propertyCount = $trendingProperties->count(); @endphp
+        <div class="relative">
+            {{-- Pass the slide count to the JS via a data attribute --}}
+            <div class="swiper prolisting_slider" data-slides-count="{{ $propertyCount }}">
+                {{-- Add 'justify-center' class to the wrapper ONLY if there is one slide --}}
+                <div class="swiper-wrapper pb-16 {{ $propertyCount === 1 ? 'justify-center' : '' }}">
                     @foreach($trendingProperties as $item)
-                    <div class="swiper-slide h-full">
+                    <div class="swiper-slide h-auto"> 
                         <div class="bg-white rounded-lg overflow-hidden group h-full flex flex-col border hover:border-gold-accent shadow-lg hover:shadow-xl transition-all duration-300">
-                            <a href="{{ url('property/' . $item->slug) }}" class="block relative overflow-hidden">
-                                <img src="{{ asset('storage/' . $item->main_image) }}" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" alt="{{$item->heading}}" />
+                            <a href="{{ url('property/' . $item->slug) }}" class="block relative overflow-hidden aspect-video">
+                                <img src="{{ asset('storage/' . $item->main_image) }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="{{$item->heading}}" />
                                 @if($item->is_featured)
-                                    <span class="absolute top-4 left-4 bg-gold-accent text-white text-xs font-bold px-3 py-1 rounded-full">FEATURED</span>
+                                    <span class="absolute top-4 left-4 bg-golden text-white text-xs font-bold px-3 py-1 rounded-full">FEATURED</span>
                                 @endif
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                             </a>
                             <div class="p-6 flex flex-col flex-grow">
                                 <h3 class="font-display text-xl text-navy-dark font-bold mb-2 truncate">
                                     <a href="{{ url('property/' . $item->slug) }}" class="hover:text-gold-accent transition">{{$item->heading}}</a>
                                 </h3>
                                 <p class="text-gray-500 text-sm mb-4 font-elegant">By {{ optional($item->builder)->name ?? 'N/A' }}</p>
-                                <div class="space-y-3 text-gray-700 font-elegant text-sm">
-                                    <p class="flex items-center"><span class="text-gold-accent mr-2">&#9679;</span> {{ $item->location }}</p>
-                                    <p class="flex items-center"><span class="text-gold-accent mr-2">&#9679;</span> Price: {{ $item->price }}</p>
-                                    <p class="flex items-center"><span class="text-gold-accent mr-2">&#9679;</span> {{ $item->configuration }}</p>
+                                <div class="space-y-3 text-navy text-sm">
+                                    <p class="flex items-start"><span class="text-golden mr-2">●</span>{{ $item->location }}</p>
+                                    <p class="flex items-start"><span class="text-golden mr-2">●</span> Price: {{ $item->price }}</p>
+                                    <p class="flex items-start"><span class="text-golden mr-2">●</span> {{ $item->configuration }}</p>
                                 </div>
-                                <a href="{{ url('property/' . $item->slug) }}" class="inline-block mt-auto pt-4 font-display text-navy-dark font-bold group/link">
-                                    Explore Project <span class="inline-block transition-transform duration-300 group-hover/link:translate-x-1">&rarr;</span>
+                               
+                                {{-- Your original button style is preserved --}}
+                                <a href="{{ url('property/' . $item->slug) }}" class="inline-block text-center mt-5 bg-navy hover:bg-golden text-white hover:bg-gold-accent px-6 py-2.5 rounded-md font-display transition-colors duration-300">
+                                    Explore Project
                                 </a>
                             </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
+                {{-- Only show pagination if there is more than one slide --}}
+                @if($propertyCount > 1)
                 <div class="propdots swiper-pagination"></div>
+                @endif
             </div>
         </div>
     </div>
 </section>
 @endif
-<!-- =================================================================================== -->
-<!-- END: TRENDING PROJECTS SECTION                                                    -->
-<!-- =================================================================================== -->
 
-<!-- =================================================================================== -->
-<!-- START: TESTIMONIALS SECTION                                                       -->
-<!-- =================================================================================== -->
-<x-testimonial-section 
-    :testimonials="$testimonials" 
-    :global-settings="$global_settings" 
-    :gray-bg="true" 
+<x-testimonial-section
+    :testimonials="$testimonials"
+    :global-settings="$global_settings"
+    :gray-bg="true"
 />
-<!-- =================================================================================== -->
-<!-- END: TESTIMONIALS SECTION                                                         -->
-<!-- =================================================================================== -->
-
-
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5/dist/fancybox/fancybox.umd.js"></script>
-<script type="text/javascript" src="{{url('')}}/frontend_assets/js/arya.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
     function initializeSliders() {
-        const prolisting_slider = new Swiper('.prolisting_slider', {
-            loop: true,
-            slidesPerView: 1,
-            spaceBetween: 30,
-            pagination: {
-                el: '.propdots',
-                clickable: true,
-            },
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-            },
-        });
+        const prolistingSliderEl = document.querySelector('.prolisting_slider');
+        
+        // Only initialize the slider if the element exists
+        if (prolistingSliderEl) {
+            const slideCount = parseInt(prolistingSliderEl.dataset.slidesCount, 10);
 
-        const testimonial_slider = new Swiper('.testimonial_slider', {
-            loop: true,
-            slidesPerView: 1,
-            spaceBetween: 30,
-            pagination: {
-                el: '.testimonial-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-            },
-        });
+            const prolisting_slider = new Swiper(prolistingSliderEl, {
+                // Loop only if there's more than one slide
+                loop: slideCount > 1,
+                slidesPerView: 1,
+                spaceBetween: 30,
+                // Configure pagination only if there's more than one slide
+                pagination: slideCount > 1 ? {
+                    el: '.propdots',
+                    clickable: true,
+                } : false,
+                breakpoints: {
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                },
+            });
+        }
+
+        // Your existing testimonial slider initialization remains the same
+        const testimonialSliderEl = document.querySelector('.testimonial_slider');
+        if (testimonialSliderEl) {
+            const testimonial_slider = new Swiper('.testimonial_slider', {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 30,
+                pagination: {
+                    el: '.testimonial-pagination',
+                    clickable: true,
+                },
+                breakpoints: {
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                },
+            });
+        }
     }
 
     function waitForSwiper() {
@@ -345,8 +327,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Your custom options
     });
 
-    // Table of Contents Auto-generation
-    const contentArea = document.querySelector(".prose"); 
+    const contentArea = document.querySelector(".prose");
     const tocList = document.getElementById("generated-toc");
 
     if (contentArea && tocList) {
@@ -355,20 +336,17 @@ document.addEventListener("DOMContentLoaded", function () {
             headings.forEach((heading, index) => {
                 const id = `heading-anchor-${index}`;
                 heading.setAttribute("id", id);
-
                 const li = document.createElement("li");
                 const a = document.createElement("a");
                 a.href = `#${id}`;
                 a.textContent = heading.textContent;
                 a.className = "hover:text-gold-accent transition-colors";
-                
                 a.addEventListener('click', function(e) {
                     e.preventDefault();
                     document.querySelector(this.getAttribute('href')).scrollIntoView({
                         behavior: 'smooth'
                     });
                 });
-
                 li.appendChild(a);
                 tocList.appendChild(li);
             });
@@ -380,6 +358,6 @@ document.addEventListener("DOMContentLoaded", function () {
     waitForSwiper();
 });
 </script>
-@endpush 
+@endpush
 
 @stop

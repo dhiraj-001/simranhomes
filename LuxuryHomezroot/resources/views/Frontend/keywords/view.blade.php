@@ -1,4 +1,8 @@
-@extends('layouts.master') @section('title', $keyword->text) @section('content') @push('styles')
+@extends('layouts.master') 
+@section('title', $keyword->text) 
+@section('content') 
+
+@push('styles')
 @vite([
     'frontend_assets/css/allprojects.css',
     'frontend_assets/css/developers.css',
@@ -7,223 +11,177 @@
     'frontend_assets/css/aresponsive.css'
 ])
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+{{-- Alpine.js is used for the interactive FAQ accordion --}}
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 @endpush
 
-<section>
-    <div class="global_slider_sec">
-        <!-- keyword_slider -->
-        <div class="keyword_slider swiper">
-            <div class="swiper-wrapper">
-                @foreach($properties as $property)
-                <div class="swiper-slide">
-                    <div class="item-md global_col ar-key-height">
-                        <a href="{{ url('property/' . $property->slug) }}" class="figure">
-                            <img src="{{ asset('storage/' . $property->main_image) }}" alt="{{ $property->heading }}" />
-                        </a>
-                        <div class="ar-key-center">
-                            <div class="ar-keyslides-section">
-                                <div class="ar-keyslides-top">
-                                    <h2>{{ $property->heading }}</h2>
-                                    <p>{{ $property->location }}</p>
+<!-- =================================================================================== -->
+<!-- START: HERO SLIDER SECTION (REDESIGNED)                                           -->
+<!-- =================================================================================== -->
+<section class="relative h-screen bg-navy-dark text-white">
+    <div class="swiper keyword_slider h-full">
+        <div class="swiper-wrapper">
+            @foreach($properties as $property)
+            <div class="swiper-slide relative">
+                <img src="{{ asset('storage/' . $property->main_image) }}" alt="{{ $property->heading }}" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="container mx-auto px-6 text-center">
+                        <h1 class="font-display text-4xl md:text-6xl font-bold text-white leading-tight">{{ $property->heading }}</h1>
+                        <p class="font-elegant text-lg text-gray-300 mt-4">{{ $property->location }}</p>
+                        <div class="mt-8 flex justify-center gap-4 text-sm font-elegant">
+                            <span class="bg-white/10 text-white backdrop-blur-md text-md border border-white/70 px-4 py-2 rounded-full">Price: {{ $property->price }}</span>
+                            <span class="bg-white/10 text-white backdrop-blur-md text-md border border-white/70 px-4 py-2 rounded-full">Size: {{ $property->unit_size ?? 'N/A' }}</span>
+                            <span class="bg-white/10 text-white backdrop-blur-md text-md border border-white/70 px-4 py-2 rounded-full">{{ $property->configuration ?? 'N/A' }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+<!-- =================================================================================== -->
+<!-- END: HERO SLIDER SECTION                                                          -->
+<!-- =================================================================================== -->
+
+
+<!-- =================================================================================== -->
+<!-- START: KEYWORD CONTENT & PROPERTIES GRID                                          -->
+<!-- =================================================================================== -->
+<section class="bg-white py-20 sm:py-28">
+    <div class="container mx-auto px-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section Header -->
+            <div class="text-center mb-16" data-animate="fade-up">
+                @php $headingParts = explode('||', $keyword->text); @endphp
+                <h2 class="font-display text-4xl md:text-5xl text-navy-dark font-bold">
+                    {{ $headingParts[0] ?? '' }}
+                    @if(isset($headingParts[1]))
+                        <span class="text-gold-accent">{{ $headingParts[1] }}</span>
+                    @endif
+                </h2>
+                <div class="prose max-w-6xl mx-auto mt-4 text-gray-600 font-elegant text-sm">
+                    {!! $keyword->content !!}
+                </div>
+            </div>
+
+            <!-- Properties Grid -->
+            @if($properties->count() > 0)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-10">
+                @foreach($properties as $item)
+                <div class="swiper-slide h-full">
+                        <div class="bg-white rounded-lg overflow-hidden group h-full flex flex-col border hover:border-golden shadow-lg hover:shadow-xl transition-all duration-300">
+                            <a href="{{ url('property/' . $item->slug) }}" class="block relative overflow-hidden">
+                                <img src="{{ asset('storage/' . $item->main_image) }}" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" alt="{{$item->heading}}" />
+                                @if($item->is_featured)
+                                    <span class="absolute top-4 left-4 bg-golden text-white text-xs font-bold px-3 py-1 rounded-full">FEATURED</span>
+                                @endif
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            </a>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="font-display text-xl text-navy font-bold mb-2 truncate">
+                                    <a href="{{ url('property/' . $item->slug) }}" class="hover:text-golden transition">{{$item->heading}}</a>
+                                </h3>
+                                <p class="text-gray-500 text-sm mb-4 font-elegant">By {{ optional($item->builder)->name ?? 'N/A' }}</p>
+                                <div class="space-y-3 text-gray-700">
+                                    <p class="flex items-center text-sm"><span class="text-golden mr-2">&#9679;</span> {{ $item->location }}</p>
+                                    <p class="flex items-center text-sm"><span class="text-golden mr-2">&#9679;</span> Price: {{ $item->price }}</p>
+                                    <p class="flex items-center text-sm"><span class="text-golden mr-2">&#9679;</span> {{ $item->configuration }}</p>
                                 </div>
-                                <div class="ar-keyslides-bottom">
-                                    <div class="ar-keyslides-left">
-                                        <div class="ar-keyslides-item">
-                                            <h4>Price</h4>
-                                            <p>{{ $property->price }}</p>
-                                        </div>
-                                        <div class="ar-keyslides-item">
-                                            <h4>Sizes</h4>
-                                            <p>{{ $property->unit_size ?? 'N/A' }}</p>
-                                        </div>
-                                        <div class="ar-keyslides-item">
-                                            <h4>Configurations</h4>
-                                            <p>{{ $property->configuration ?? 'N/A' }}</p>
-                                        </div>
-                                    </div>
-                                    <button class="btn-one smoth-scroll btn border-black ar-keyslides-right-button" onclick="openModal(this)" data-title-first="Enquire" data-title-highlight="Now" data-model=".enquire-pop">
-                                        Enquire Now
-                                    </button>
-                                </div>
+                                <a href="{{ url('property/' . $item->slug) }}" class="inline-block mt-5 bg-navy text-white hover:bg-golden px-6 py-2 rounded-md font-display">
+                                    Explore Project
+                                </a>
                             </div>
                         </div>
+                    </div>
+                @endforeach
+            </div>
+            @else
+            <div class="text-center py-20 border-2 border-dashed rounded-2xl">
+                 <svg class="w-16 h-16 mx-auto text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                 <h4 class="mt-4 font-display text-2xl text-navy-dark">No Properties Found</h4>
+                 <p class="mt-2 text-gray-500 font-elegant">No properties are currently associated with this keyword.</p>
+            </div>
+            @endif
+        </div>
+    </div>
+</section>
+<!-- =================================================================================== -->
+<!-- END: KEYWORD CONTENT & PROPERTIES GRID                                            -->
+<!-- =================================================================================== -->
+
+
+<!-- =================================================================================== -->
+<!-- START: FAQ SECTION (REDESIGNED)                                                   -->
+<!-- =================================================================================== -->
+<section class="bg-gray-50 py-20 sm:py-28">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto" data-animate="fade-up">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-4xl text-navy-dark font-bold">Frequently Asked <span class="text-gold-accent">Questions</span></h2>
+            </div>
+            @if($kfaqs->count() > 0)
+            <div class="space-y-4">
+                @foreach($kfaqs as $faq)
+                <div x-data="{ open: {{ $loop->first ? 'true' : 'false' }} }" class="bg-white rounded-lg border border-gray-200">
+                    <button @click="open = !open" class="w-full flex justify-between items-center text-left p-6">
+                        <h5 class="font-display font-bold text-navy-dark">{{ $faq->question }}</h5>
+                        <svg class="w-5 h-5 text-gold-accent transition-transform duration-300" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div x-show="open" x-transition class="px-6 pb-6 font-elegant text-gray-600 text-sm">
+                        <p>{{ $faq->answer }}</p>
                     </div>
                 </div>
                 @endforeach
             </div>
+            @else
+            <p class="text-center text-gray-500">No FAQs available for this topic.</p>
+            @endif
         </div>
     </div>
 </section>
-
-<!-- Main div -->
-<section>
-    <div class="home-secC sec-pad ar-key-pd gray-bg">
-        <div class="container">
-            <div class="ar-dev-abt">
-                <div class="heading">
-                    <div class="heading_wrapper">
-                        <div class="line"></div>
-                        @php $headingParts = explode('||', $keyword->text); @endphp
-                        <h2>
-                            {{ $headingParts[0] ?? '' }} @if(isset($headingParts[1]))
-                            <span>{{ $headingParts[1] }}</span>
-                            @endif
-                        </h2>
-                        <div class="line"></div>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="ar-devd-cnt">
-                        <p>{!! $keyword->content !!}</p>
-                    </div>
-                </div>
-                <div class="btn_wrapper text-center">
-                    <div class="btn btn-btn border-black" onclick="openModal(this)" data-title-first="Enquire" data-title-highlight="Now" style="cursor: pointer;" data-model=".enquire-pop">Enquire Now</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Main div -->
-
-<!-- projects -->
-<section>
-    <div class="home-secE ar-key-pd">
-        <div class="container">
-            <div class="prop_types_wrapper">
-                <div class="tab-nav-content prop_nav_content over_hidden">
-                    <div class="tabs active" data-tab="new_launch" data-animate="fade-out">
-                        @if($properties->count() > 0) @foreach($properties as $item)
-                        <div class="prop_col">
-                            <a href="{{ url('property/' . $item->slug) }}">
-                                <figure>
-                                    <img src="{{ asset('storage/' . $item->main_image) }}" class="prop_img" alt="{{ $item->heading }}" />
-                                    <a href="{{ url('property/' . $item->slug) }}" class="exp_pro"> Explore projects <img src="{{url('')}}/frontend_assets/icon/top-right.svg" alt="" /> </a>
-                                    <span class="stick">
-                                        {{ $item->property_status }}
-                                    </span>
-                                </figure>
-                            </a>
-                            <figcaption>
-                                <h6>{{ $item->heading }}</h6>
-                                <p class="ar-pt">By {{ optional($item->builder)->name ?? 'N/A' }}</p>
-                                <ul class="details">
-                                    <li class="loc">
-                                        <img class="arsvg ar-smooth-blink" src="{{url('')}}/frontend_assets/icon/mappin1.svg" alt="" />
-                                        <p>{{ $item->location }}</p>
-                                    </li>
-                                    <li>
-                                        <img class="svg" src="{{url('')}}/frontend_assets/icon/rupee.svg" alt="" />
-                                        <p>{{ $item->price }}</p>
-                                    </li>
-                                    <li>
-                                        <img class="svg" src="{{url('')}}/frontend_assets/icon/hotel.svg" alt="" />
-                                        <p>{{ $item->configuration }}</p>
-                                    </li>
-                                </ul>
-                            </figcaption>
-                        </div>
-                        @endforeach @else
-                        <div class="d-flex justify-content-center align-items-center" style="min-height: 300px; text-align: center;">
-                            <div>
-                                <h4>No properties found for this keyword.</h4>
-                                <p>Please try a different keyword or check back later.</p>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                </div>
-                <!--<div class="btn_wrapper text-center" data-animate="fade-up">-->
-                <!--    <div class="btn btn-btn border-black">Load More-->
-                <!--        <img src="{{url('')}}/frontend_assets/icon/right-arrow.svg" alt="" class="svg">-->
-                <!--    </div>-->
-                <!--</div>-->
-            </div>
-        </div>
-    </div>
-</section>
-<!-- projects -->
-
-<!-- faq -->
-<section class="sec-pad ar-key-pd gray-bg">
-    <div class="home-secF">
-        <div class="container">
-            <div class="ar-faqs-card">
-                <div class="ar-faqs-header">
-                    <h2 class="ar-heading">Frequently <span>Asked Questions</span></h2>
-                </div>
-
-                <div class="ar-faqs-body">
-                    <div class="ar-faq-container">
-                        <div class="ar-faq-accordion">
-                            @foreach($kfaqs as $index => $faq)
-                                <div class="ar-faq-item">
-                                    <input class="ar-faq-hidden" type="checkbox" id="ar-faq-q{{ $index }}" {{ $index === 0 ? 'checked' : '' }} />
-                                    <label class="ar-faq-question" for="ar-faq-q{{ $index }}">
-                                        Q. {{ $faq->question }}
-                                    </label>
-
-                                    <div class="ar-faq-answer">
-                                        <p>{{ $faq->answer }}</p>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- faq -->
+<!-- =================================================================================== -->
+<!-- END: FAQ SECTION                                                                  -->
+<!-- =================================================================================== -->
 
 
-<!-- testimonials -->
-<section>
-    <div class="home-secG sec-pad ar-key-pd">
-        <div class="container">
-            <div class="heading">
-                <div class="heading_wrapper">
-                    <div class="line"></div>
-                    @php $headingParts = explode('||', $global_settings->home_sec8_heading); @endphp
-                    <h2>
-                        {{ $headingParts[0] ?? '' }} @if(isset($headingParts[1]))
-                        <span>{{ $headingParts[1] }}</span>
-                        @endif
-                    </h2>
-                    <div class="line"></div>
-                </div>
-                <p>{!! $global_settings->home_sec8_paragraph !!}</p>
-            </div>
-            <div class="property_slider swiper ar-testimonial-pb" data-animate="fade-out" data-animate-delay="500">
-                <div class="swiper-wrapper">
-                    @foreach($testimonials as $testimonial)
-                    <div class="swiper-slide">
-                        <div class="testimony_col">
-                            <img src="{{ Vite::asset('frontend_assets/icon/quotes.svg') }}" class="svg" alt="" />
-                            <h5 class="name">{{ $testimonial->name }}</h5>
-                            <p>{{ $testimonial->position }}</p>
-                            <div class="stars">
-                                <img src="{{ Vite::asset('frontend_assets/icon/stars.svg') }}" alt="" />
-                                <img src="{{ Vite::asset('frontend_assets/icon/stars.svg') }}" alt="" />
-                                <img src="{{ Vite::asset('frontend_assets/icon/stars.svg') }}" alt="" />
-                                <img src="{{ Vite::asset('frontend_assets/icon/stars.svg') }}" alt="" />
-                                <img src="{{ Vite::asset('frontend_assets/icon/stars.svg') }}" alt="" />
-                            </div>
-                            <div class="desc">
-                                <p>{!! $testimonial->message !!}</p>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- testimonials -->
+<!-- =================================================================================== -->
+<!-- START: TESTIMONIALS SECTION                                                       -->
+<!-- =================================================================================== -->
+<x-testimonial-section 
+    :testimonials="$testimonials" 
+    :global-settings="$global_settings"
+    gray-bg="false"
+/>
+<!-- =================================================================================== -->
+<!-- END: TESTIMONIALS SECTION                                                         -->
+<!-- =================================================================================== -->
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
-@endpush @stop
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const keywordSlider = new Swiper('.keyword_slider', {
+            loop: true,
+            effect: 'fade',
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    });
+
+    function openModal(button) {
+        // Your existing modal logic here
+    }
+</script>
+@endpush 
+@stop
+

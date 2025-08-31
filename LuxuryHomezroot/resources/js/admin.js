@@ -20,3 +20,4 @@ import '../../admin_assets/libs/sweetalert2/sweetalert2.min.js';
 import '../../admin_assets/libs/select2/js/select2.min.js';
 import '../../admin_assets/libs/dropzone/min/dropzone.min.js';
 import '../../admin_assets/libs/choices.js/public/assets/scripts/choices.min.js';
+import '../../admin_assets/js/pages/dashboard.init.js';

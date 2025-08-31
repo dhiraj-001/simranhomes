@@ -24,7 +24,7 @@
 <!-- =================================================================================== -->
 <!-- START: BLOG HERO SECTION (REDESIGNED)                                             -->
 <!-- =================================================================================== -->
-<div class="relative h-[70vh] min-h-[500px] flex items-center justify-center text-center text-white overflow-hidden">
+<div class="relative h-[70vh] min-h-[500px] px-5 flex items-center justify-center text-center text-white overflow-hidden">
     <!-- Background Image -->
     <div class="absolute inset-0 z-0 bg-navy-dark">
         <img src="{{ asset('storage/' . $blog->main_image) }}" alt="{{ $blog->heading }}" class="w-full h-full object-cover" />
@@ -50,7 +50,7 @@
 <!-- =================================================================================== -->
 <!-- START: BLOG CONTENT SECTION (REDESIGNED)                                          -->
 <!-- =================================================================================== -->
-<section class="bg-white py-20 sm:py-28">
+<section class="bg-white py-20 sm:py-28 px-5">
     <div class="container mx-auto px-6">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
 
@@ -93,7 +93,7 @@
                             <input type="email" name="email" placeholder="Your Email" required class="w-full border-navy/20 border-1 bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent" />
                             <input type="text" name="mobile" placeholder="Mobile Number" required class="w-full border-navy/20 border-1 bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent" />
                             <textarea name="message" placeholder="Your Message" rows="4" class="w-full border-navy/20 border-1 bg-white/10 p-3 rounded-md placeholder-gray-400 focus:ring-2 focus:ring-gold-accent"></textarea>
-                            <button type="submit" class="w-full bg-gold-accent bg-navy font-bold py-3 rounded-md hover:bg-white transition-colors duration-300 font-display">Submit</button>
+                            <button type="submit" class="w-full bg-gold-accent bg-navy font-bold py-3 rounded-md hover:bg-slate-400 hover:text-navy transition-colors duration-300 font-display">Submit</button>
                         </form>
                     </div>
 
@@ -101,7 +101,7 @@
                     <div data-animate="fade-up" data-animate-delay="100">
                         <h4 class="font-display text-2xl text-navy-dark font-bold mb-4">Recent Posts</h4>
                         <div class="space-y-4">
-                            @foreach($blogs->take(3) as $recentBlog)
+                            @foreach($blogs as $recentBlog)
                                 @if($recentBlog->status == 1 && $recentBlog->id != $blog->id)
                                 <a href="{{ url('blog/' . $recentBlog->slug) }}" class="group flex items-center gap-4">
                                     <img src="{{ asset('storage/' . $recentBlog->main_image) }}" alt="{{ $recentBlog->heading }}" class="w-24 h-24 object-cover rounded-lg flex-shrink-0" />
@@ -127,43 +127,46 @@
 <!-- =================================================================================== -->
 <!-- START: TRENDING PROJECTS SECTION                                                  -->
 <!-- =================================================================================== -->
-<section class="bg-gray-50 py-20 sm:py-28">
-    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="font-display text-4xl text-navy-dark font-bold">Trending <span class="text-gold-accent">Projects</span></h2>
-                <p class="text-gray-600 max-w-2xl mx-auto font-elegant mt-2">Browse our most sought-after listings loved by clients and investors alike.</p>
-            </div>
-            <div class="swiper prolisting_slider">
-                <div class="swiper-wrapper pb-16">
-                    @foreach($trendingProperties as $item)
-                    <div class="swiper-slide h-full">
-                        <div class="bg-white rounded-lg overflow-hidden group h-full flex flex-col border hover:border-gold-accent shadow-lg hover:shadow-xl transition-all duration-300">
-                            <a href="{{ url('property/' . $item->slug) }}" class="block relative overflow-hidden">
-                                <img src="{{ asset('storage/' . $item->main_image) }}" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" alt="{{$item->heading}}" />
-                                @if($item->is_featured)
-                                    <span class="absolute top-4 left-4 bg-gold-accent text-white text-xs font-bold px-3 py-1 rounded-full">FEATURED</span>
-                                @endif
-                            </a>
-                            <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="font-display text-xl text-navy-dark font-bold mb-2 truncate">
-                                    <a href="{{ url('property/' . $item->slug) }}" class="hover:text-gold-accent transition">{{$item->heading}}</a>
-                                </h3>
-                                <p class="text-gray-500 text-sm mb-4 font-elegant">By {{ optional($item->builder)->name ?? 'N/A' }}</p>
-                                <div class="space-y-3 text-gray-700 font-elegant text-sm">
-                                    <p class="flex items-center"><span class="text-gold-accent mr-2">&#9679;</span> {{ $item->location }}</p>
-                                    <p class="flex items-center"><span class="text-gold-accent mr-2">&#9679;</span> Price: {{ $item->price }}</p>
-                                    <p class="flex items-center"><span class="text-gold-accent mr-2">&#9679;</span> {{ $item->configuration }}</p>
-                                </div>
-                                <a href="{{ url('property/' . $item->slug) }}" class="inline-block mt-auto pt-4 font-display text-navy-dark font-bold group/link">
-                                    Explore Project <span class="inline-block transition-transform duration-300 group-hover/link:translate-x-1">&rarr;</span>
+<section class="bg-gray-50 py-20 sm:py-28 ">
+    <div class="container mx-auto px-6 max-w-4xl">
+        <div class="flex justify-center">
+            <div class="max-w-[40rem] w-full md:px-28">
+                <div class="text-center mb-12">
+                    <h2 class="font-display text-4xl text-navy-dark font-bold">Trending <span class="text-gold-accent">Projects</span></h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto font-elegant mt-2">Browse our most sought-after listings loved by clients and investors alike.</p>
+                </div>
+                <div class="swiper prolisting_slider">
+                    <div class="swiper-wrapper pb-16">
+                        @foreach($trendingProperties as $item)
+                        <div class="swiper-slide h-full">
+                            <div class="bg-white rounded-lg overflow-hidden group h-full flex flex-col border hover:border-golden shadow-lg hover:shadow-xl transition-all duration-300">
+                                <a href="{{ url('property/' . $item->slug) }}" class="block relative overflow-hidden">
+                                    <img src="{{ asset('storage/' . $item->main_image) }}" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" alt="{{$item->heading}}" />
+                                    @if($item->is_featured)
+                                        <span class="absolute top-4 left-4 bg-golden text-white text-xs font-bold px-3 py-1 rounded-full">FEATURED</span>
+                                    @endif
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                 </a>
+                                <div class="p-6 flex flex-col flex-grow">
+                                    <h3 class="font-display text-xl text-navy font-bold mb-2 truncate">
+                                        <a href="{{ url('property/' . $item->slug) }}" class="hover:text-golden transition">{{$item->heading}}</a>
+                                    </h3>
+                                    <p class="text-gray-500 text-sm mb-4 font-elegant">By {{ optional($item->builder)->name ?? 'N/A' }}</p>
+                                    <div class="space-y-3 text-gray-700">
+                                        <p class="flex items-center text-sm"><span class="text-golden mr-2">&#9679;</span> {{ $item->location }}</p>
+                                        <p class="flex items-center text-sm"><span class="text-golden mr-2">&#9679;</span> Price: {{ $item->price }}</p>
+                                        <p class="flex items-center text-sm"><span class="text-golden mr-2">&#9679;</span> {{ $item->configuration }}</p>
+                                    </div>
+                                    <a href="{{ url('property/' . $item->slug) }}" class="inline-block mt-5 bg-navy text-white hover:bg-golden px-6 py-2 rounded-md font-display">
+                                        Explore Project
+                                    </a>
+                                </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
-                    @endforeach
+                    <div class="propdots swiper-pagination"></div>
                 </div>
-                <div class="propdots swiper-pagination"></div>
             </div>
         </div>
     </div>

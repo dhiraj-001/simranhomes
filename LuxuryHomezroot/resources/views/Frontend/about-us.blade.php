@@ -39,7 +39,7 @@
 <!-- =================================================================================== -->
 <!-- START: HERO BANNER SECTION (REDESIGNED)                                           -->
 <!-- =================================================================================== -->
-<div class="relative h-screen min-h-[700px] flex items-center justify-center text-center text-white overflow-hidden">
+<div class="relative h-screen min-h-[700px] flex items-center justify-center text-center px-5 text-white overflow-hidden">
     <!-- Background Media (Video or Image) with Dark Overlay -->
     <div class="absolute inset-0 z-0 bg-navy-dark">
         @if($banner && $banner->type === 'video' && $banner->video)
@@ -79,7 +79,7 @@
 <!-- =================================================================================== -->
 <!-- START: ABOUT US SECTION (REDESIGNED)                                              -->
 <!-- =================================================================================== -->
-<section class="bg-cream py-20 sm:py-28 overflow-hidden relative" id="about-us">
+<section class="bg-cream py-20 sm:py-28 overflow-hidden relative px-5" id="about-us">
     <!-- Large decorative background text -->
     <div class="absolute top-1/2 -translate-y-1/2 left-0 w-full text-center select-none z-0">
         <h2 class="background-text-stroke text-[15vw] leading-none font-display">Luxury Homez</h2>
@@ -127,7 +127,7 @@
 <!-- =================================================================================== -->
 <!-- START: FOUNDER'S DESK SECTION (REDESIGNED)                                        -->
 <!-- =================================================================================== -->
-<section class="bg-white py-20 sm:py-32">
+<section class="bg-white py-20 sm:py-32 px-5">
     <div class="container mx-auto px-6">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -170,7 +170,7 @@
 <!-- =================================================================================== -->
 <!-- START: VISION, MISSION, STRENGTHS SECTION (REDESIGNED)                            -->
 <!-- =================================================================================== -->
-<section class="bg-cream py-20 sm:py-28">
+<section class="bg-cream py-20 sm:py-28 px-5">
     <div class="container mx-auto px-6">
         <div class="max-w-7xl mx-auto">
             <!-- Using a Swiper instance for the slider -->
@@ -221,8 +221,8 @@
 <!-- =================================================================================== -->
 <!-- START: REASONS TO CHOOSE US SECTION (IMPROVED DESIGN)                             -->
 <!-- =================================================================================== -->
-<section class="bg-navy-dark text-white relative py-20 sm:py-28 bg-[#081521]">
-    <div class="absolute inset-0 bg-cover bg-center opacity-5" style="background-image: url('{{ Vite::asset('frontend_assets/images/about/texture-bg.png') }}');"></div>
+<section class="bg-navy-dark text-white relative py-20 sm:py-28 bg-[#081521] px-5">
+    <div class="absolute inset-0 bg-cover bg-center opacity-5" style="background-image: url('{{ Vite::asset('frontend_assets/images/about/texture-bg.webp') }}');"></div>
     <div class="container mx-auto px-6 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16" data-animate="fade-up">
@@ -279,7 +279,7 @@
 <!-- =================================================================================== -->
 <!-- START: AWARDS & ACCOMPLISHMENTS SECTION                                           -->
 <!-- =================================================================================== -->
-<section class="bg-white py-20 sm:py-28">
+<section class="bg-white py-20 sm:py-28 px-5">
     <div class="container mx-auto px-6">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16" data-animate="fade-up">
@@ -324,7 +324,7 @@
 <!-- =================================================================================== -->
 <!-- START: DEVELOPERS/PARTNERS SECTION (REDESIGNED)                                   -->
 <!-- =================================================================================== -->
-<section class="bg-cream py-20 sm:py-28">
+<section class="bg-cream py-20 sm:py-28 px-5">
     <div class="container mx-auto px-6">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">

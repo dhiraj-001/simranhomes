@@ -43,10 +43,29 @@ class HomeController extends Controller
                 ->get();
         }
         
+        // Define the three property types manually with images
+        $propertyTypes = collect([
+            (object)[
+                'slug' => 'residential',
+                'name' => 'Residential',
+                'main_image' => '/residential.jpg' // Add appropriate image path
+            ],
+            (object)[
+                'slug' => 'commercial', 
+                'name' => 'Commercial',
+                'main_image' => '/commercial.jpeg' // Add appropriate image path
+            ],
+            (object)[
+                'slug' => 'residential-plots',
+                'name' => 'Residential Plots',
+                'main_image' => '/residential-plots.jpg' // Add appropriate image path
+            ]
+        ]);
+
         $banner = Banner::with('images')->where('page', 'home')->where('status', 1)->latest()->first();
 
         
-        return view('Frontend.index', compact('testimonials', 'blogs', 'builders', 'statistics', 'subtypes', 'homeproperties', 'availableStatuses', 'propertiesByStatus', 'banner','cities'));
+        return view('Frontend.index', compact('testimonials', 'blogs', 'builders', 'statistics', 'subtypes', 'homeproperties', 'availableStatuses', 'propertiesByStatus', 'banner','cities', 'propertyTypes'));
     }
     
     public function propertyBySubtype($subtype)

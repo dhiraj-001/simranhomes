@@ -43,7 +43,7 @@
 <!-- =================================================================================== -->
 <!-- START: HERO BANNER SECTION (REDESIGNED)                                           -->
 <!-- =================================================================================== -->
-<div class="relative h-[60vh] min-h-[500px] flex items-center justify-center text-center text-white overflow-hidden">
+<div class="relative px-5 h-[60vh] min-h-[500px] flex items-center justify-center text-center text-white overflow-hidden">
     <!-- Background Media -->
     <div class="absolute inset-0 z-0 bg-navy-dark">
         @if($banner && $banner->type === 'image' && $banner->images->count())
@@ -76,7 +76,7 @@
 <!-- =================================================================================== -->
 <!-- START: BLOGS SECTION (REDESIGNED)                                                 -->
 <!-- =================================================================================== -->
-<section class="bg-gray-50 py-20 sm:py-28">
+<section class="bg-gray-50 py-20 sm:py-28 px-5">
     <div class="container mx-auto px-6">
         <div class="max-w-7xl mx-auto">
             

@@ -75,7 +75,7 @@ Route::get('/properties/builder/{slug}', [PropertyController::class, 'builderPro
 
 //Properties
 // Filter Properties by property_type
-Route::get('/properties/{propertyType}', [PropertyController::class, 'filterProperties']);
+Route::get('/properties/{propertyType}', [PropertyController::class, 'filterProperties'])->name('property.by.type');
 
 // Search
 Route::post('/filter-properties', [PropertyController::class, 'propertySearch'])->name('propertySearch');
@@ -306,7 +306,7 @@ Route::get('/keywords/{slug}', [KeywordController::class, 'showKeyword'])->name(
 
 Route::get('/city/{slug}', [CityController::class, 'showCityProperties'])->name('city.properties');
 
-Route::get('/property-type/{subtype}', [HomeController::class, 'propertyBySubtype'])->name('property.by.subtype');
+Route::get('/property-type/{propertyType}', [PropertyController::class, 'filterProperties'])->name('property.by.type');
 
 
 

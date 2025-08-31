@@ -37,7 +37,7 @@
             The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
         </p>
         
-        <a href="/" class="inline-block mt-8 bg-golden text-navy-dark font-bold px-8 py-3 rounded-lg hover:bg-white hover:-translate-y-1 transition-all duration-300 font-display">
+        <a href="/" class="inline-block mt-8 bg-golden text-navy font-bold px-8 py-3 rounded-lg hover:bg-white hover:-translate-y-1 transition-all duration-300 font-display">
             Back to Homepage
         </a>
     </div>

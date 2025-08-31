@@ -127,10 +127,22 @@
                                         <option value="">Choose Sub Type</option>
                                         @foreach($subtypes as $subtype)
                                             <option value="{{ $subtype->slug }}"
-                                                {{ old('property_sub_type', $property->property_sub_type ?? '') == $subtype->slug ? 'selected' : '' }}>
+                                                {{ old('property_sub_type') == $subtype->slug ? 'selected' : '' }}>
                                                 {{ $subtype->psubtype_name }}
                                             </option>
                                         @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            
+                            <div class="form-group row mb-4" id="sub_property_container" style="display: none;">
+                                <label for="sub_property" class="col-form-label col-lg-2">Sub Property</label>
+                                <div class="col-lg-10">
+                                    <select name="sub_property" class="form-select" id="sub_property">
+                                        <option value="">Choose Sub Property</option>
+                                        <option value="Retail Shops" {{ old('sub_property') == 'Retail Shops' ? 'selected' : '' }}>Retail Shops</option>
+                                        <option value="Office spaces" {{ old('sub_property') == 'Office spaces' ? 'selected' : '' }}>Office spaces</option>
                                     </select>
                                 </div>
                             </div>
@@ -579,6 +591,25 @@ $(document).ready(function() {
             .replace(/^-+/, "") // Trim - from start of text
             .replace(/-+$/, ""); // Trim - from end of text
     }
+
+    // Function to toggle sub_property field based on property_type
+    function toggleSubPropertyField() {
+        var propertyType = $("select[name='property_type']").val();
+        if (propertyType === 'commercial') {
+            $("#sub_property_container").show();
+        } else {
+            $("#sub_property_container").hide();
+            $("#sub_property").val("");
+        }
+    }
+
+    // Initial toggle based on current property_type
+    toggleSubPropertyField();
+
+    // Bind change event to property_type select
+    $("select[name='property_type']").on("change", function() {
+        toggleSubPropertyField();
+    });
 
     // Repeater functionality
     $(document).on("click", ".add-repeater-item", function() {

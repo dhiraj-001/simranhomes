@@ -57,22 +57,22 @@
                     <!-- LOGO -->
                     <div class="navbar-brand-box">
                         <a href="{{ url('') }}/admin/dashboard" class="logo logo-dark">
-                            <span class="logo-sm">
-                                <img src="{{ url('') }}/admin_assets/images/logo-icon.png" alt="" height="40">
+                            <span class="logo-sm mr-2">
+                                <img src="{{ url('') }}/admin_assets/images/main_logo.png" alt="" height="40">
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ url('') }}/admin_assets/images/logo-icon.png" alt="" height="34"> <span
-                                    class="logo-txt">Luxury Homez</span>
+                                <img src="{{ url('') }}/admin_assets/images/main_logo.png" alt="" height="34"> <span
+                                    class="logo-txt">Simran Home Solution</span>
                             </span>
                         </a>
 
                         <a href="{{ url('') }}/admin/dashboard" class="logo logo-light">
-                            <span class="logo-sm">
-                                <img src="{{ url('') }}/admin_assets/images/logo-icon.png" alt="" height="40">
+                            <span class="logo-sm mr-2">
+                                <img src="{{ url('') }}/admin_assets/images/main_logo.png" alt="" height="40">
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ url('') }}/admin_assets/images/logo-icon.png" alt="" height="34"> <span
-                                    class="logo-txt">Luxury Homez </span>
+                                <img src="{{ url('') }}/admin_assets/images/main_logo.png" alt="" height="34"> <span
+                                    class="logo-txt">Simran Home Solution </span>
                             </span>
                         </a>
                     </div>
@@ -344,7 +344,7 @@
                     <div class="col-sm-6">
                         <script>
                         document.write(new Date().getFullYear())
-                        </script> © Luxury Homez.
+                        </script> © Simran Home Solution.
                     </div>
                     <div class="col-sm-6">
                         <div class="text-sm-end d-none d-sm-block">
@@ -356,7 +356,7 @@
             </div>
         </footer>
     </div>
-    <!-- end main content-->
+    <!-- end main_logo content-->
     </div>
     <!-- END layout-wrapper -->
 

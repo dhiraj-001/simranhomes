@@ -5910,7 +5910,7 @@
     }
 
     .container {
-        padding: 0px 0px;
+        padding: 0px 7px;
     }
 
     .ar-price-card {
@@ -6856,7 +6856,7 @@
     /* footer keyword */
 
     p {
-        text-align: justify;
+        text-align: center;
     }
 
     .ar-btn-style-1 {
